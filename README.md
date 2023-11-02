@@ -1,10 +1,13 @@
 # React + Redux + TypeScript + AXIOS + MUI + Vite
 
 ## To run the project type:
+
 **npm run start**
 
 ## Minimum numbers of Types described here:
-***/src/types/users.ts***
+
+**_/src/types/index.ts_**
 
 ## API calls provided here:
-***/src/utils/apiGithub.ts***
+
+**_/src/utils/apiGetCoords.ts_**
