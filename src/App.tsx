@@ -1,14 +1,10 @@
 import './App.css'
-import { ThemeProvider } from '@mui/material/styles'
-import { theme } from './theme'
-import { CssBaseline, Typography } from '@mui/material'
-import Cave from './components/Cave'
+import { Typography } from '@mui/material'
+import GameInitializer from './components/GameInitializer'
 
 function App() {
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <CssBaseline enableColorScheme />
         <Typography
           sx={{ fontSize: '1.5rem' }}
           p={0}
@@ -17,8 +13,8 @@ function App() {
           Through the Cave
         </Typography>
 
-        <Cave></Cave>
-      </ThemeProvider>
+        <GameInitializer></GameInitializer>
+
     </>
   )
 }

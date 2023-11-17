@@ -1,9 +1,8 @@
-import { rootReducer } from './reducers'
+import { create } from 'zustand'
+import { createCaveSlice } from './caveStore'
+import { createGameInitSlice } from './gameInitStore'
 
-import { configureStore } from '@reduxjs/toolkit'
-
-const store = configureStore({
-  reducer: rootReducer,
-})
-
-export default store
+export const useBoundStore = create((...a) => ({
+  ...createCaveSlice(...a),
+  ...createGameInitSlice(...a),
+}))
