@@ -1,3 +1,5 @@
+import { gameGlobalStore } from "../types"
+
 export const createGameInitSlice = (set) => ({
   token: '',
   id: '',
