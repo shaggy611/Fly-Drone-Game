@@ -1,8 +1,9 @@
 import { create } from 'zustand'
-import { createCaveSlice } from './caveStore'
-import { createGameInitSlice } from './gameInitStore'
+import createCaveSlice from './caveSlice'
+import createGameInitSlice from './gameInitSlice'
+import { caveStore, gameGlobalStore } from '../types'
 
-export const useBoundStore = create((...a) => ({
+export const useBoundStore = create<gameGlobalStore & caveStore>()((...a) => ({
   ...createCaveSlice(...a),
   ...createGameInitSlice(...a),
 }))
