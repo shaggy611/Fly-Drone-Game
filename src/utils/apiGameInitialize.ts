@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useBoundStore } from '../store'
 
 const ROOT_URL: string = 'https://cave-drone-server.shtoa.xyz'
 
@@ -19,6 +20,10 @@ export async function apiInitGame() {
     ])
 
     const token = `${result[0].data.chunk}${result[1].data.chunk}${result[2].data.chunk}${result[3].data.chunk}`
+
+    useBoundStore.getState().setId(id)
+    useBoundStore.getState().setToken(token)
+
     return { id, token }
   } catch (error) {
     console.log(error)

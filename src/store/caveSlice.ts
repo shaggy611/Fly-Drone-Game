@@ -1,14 +1,18 @@
-import { gameGlobalStore, caveStore } from './../types/index'
+import {
+  gameInitializeStore,
+  caveStore,
+  globalGameStore,
+} from './../types/index'
 import { StateCreator } from 'zustand'
 
 const createCaveSlice: StateCreator<
-  caveStore & gameGlobalStore,
+  caveStore & globalGameStore & gameInitializeStore,
   [],
   [],
   caveStore
 > = (set) => ({
-  caveCords: {},
-  fetchCords: () => set((state) => ({ caveCords: state })),
+  caveCoords: [],
+  setCaveCoords: (payload) => set(() => ({ caveCoords: payload })),
 })
 
 export default createCaveSlice

@@ -3,8 +3,11 @@ import Typography from '@mui/material/Typography'
 import styled from 'styled-components'
 import ScoreTable from './ScoreTable'
 import ComplexitySlider from './ComplexitySlider'
+import { useBoundStore } from '../store'
 
 function WelcomeBoard() {
+  const setStart = useBoundStore((state) => state.setStart)
+
   return (
     <StledWelcomeBoard>
       <StyledContainer
@@ -35,7 +38,11 @@ function WelcomeBoard() {
         <ComplexitySlider />
       </StyledContainer>
 
-      <Button variant='contained' size='large' sx={{ width: '100%' }}>
+      <Button
+        variant='contained'
+        size='large'
+        sx={{ width: '100%' }}
+        onClick={() => setStart()}>
         START GAME
       </Button>
     </StledWelcomeBoard>
