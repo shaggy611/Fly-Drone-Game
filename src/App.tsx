@@ -8,6 +8,9 @@ import { Button } from '@mui/material'
 function App() {
   const start = useBoundStore((state) => state.start)
   const setStart = useBoundStore((state) => state.setStart)
+  const setId = useBoundStore((state) => state.setId)
+  const setToken = useBoundStore((state) => state.setToken)
+  const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
 
   return (
     <>
@@ -15,7 +18,12 @@ function App() {
         variant='contained'
         size='large'
         sx={{ width: '100%' }}
-        onClick={() => setStart()}>
+        onClick={() => {
+          setStart()
+          setId('')
+          setToken('')
+          setCaveCoords([])
+        }}>
         RESET GAME
       </Button>
 

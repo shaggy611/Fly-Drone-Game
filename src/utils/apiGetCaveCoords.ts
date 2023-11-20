@@ -18,7 +18,7 @@ const apiGetCaveCoords = async () => {
   socket.onclose = () => {
     console.log('Connection closed')
     useBoundStore.getState().setCaveCoords(coords)
-    return coords
+    socket.close()
   }
 }
 
