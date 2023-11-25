@@ -3,8 +3,6 @@ import WelcomeBoard from './components/WelcomeBoard'
 import Cave from './components/Cave'
 import { useBoundStore } from './store'
 import { Button } from '@mui/material'
-// import { useEffect } from 'react'
-// import { apiInitGame } from './utils/api/apiGameInitialize'
 
 function App() {
   const start = useBoundStore((state) => state.start)
@@ -12,17 +10,6 @@ function App() {
   const setId = useBoundStore((state) => state.setId)
   const setToken = useBoundStore((state) => state.setToken)
   const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
-
-  // useEffect(() => {
-  //   async function initGame() {
-  //     await apiInitGame()
-  //     console.log(start, 'Initializing...')
-  //   }
-
-  //   if (start) {
-  //     initGame()
-  //   }
-  // }, [start])
 
   return (
     <>
