@@ -1,8 +1,13 @@
-import { gameInitializeStore, caveStore, globalGameStore } from '../types'
+import {
+  gameInitializeStore,
+  caveStore,
+  globalGameStore,
+  droneStore,
+} from '../types'
 import { StateCreator } from 'zustand'
 
 const createGameInitSlice: StateCreator<
-  gameInitializeStore & caveStore & globalGameStore,
+  gameInitializeStore & caveStore & globalGameStore & droneStore,
   [],
   [],
   gameInitializeStore
@@ -10,7 +15,7 @@ const createGameInitSlice: StateCreator<
   token: '',
   id: '',
   setToken: (param: string) => set(() => ({ token: param })),
-  setId: (param: string) => set(() => ({ id: param }))
+  setId: (param: string) => set(() => ({ id: param })),
 })
 
 export default createGameInitSlice

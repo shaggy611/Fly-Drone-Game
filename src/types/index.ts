@@ -21,3 +21,8 @@ export interface globalGameStore {
   setPlayerName: (payload: string) => void
   setGameComplexity: (payload: number) => void
 }
+
+export interface droneStore {
+  position: number[]
+  setPosition: (uayload: number[]) => void
+}

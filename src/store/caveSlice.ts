@@ -2,11 +2,12 @@ import {
   gameInitializeStore,
   caveStore,
   globalGameStore,
+  droneStore
 } from './../types/index'
 import { StateCreator } from 'zustand'
 
 const createCaveSlice: StateCreator<
-  caveStore & globalGameStore & gameInitializeStore,
+  caveStore & globalGameStore & gameInitializeStore & droneStore,
   [],
   [],
   caveStore

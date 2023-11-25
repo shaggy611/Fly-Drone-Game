@@ -12,8 +12,8 @@ function Cave() {
   const token = useBoundStore((state) => state.token)
   const loading = useBoundStore((state) => state.loading)
   const setLoading = useBoundStore((state) => state.setLoading)
-  const [svgPoints, setSvgPoints] = useState<string[]>()
   const caveBuildBlock = useBoundStore((state) => state.caveBlockHeight)
+  const [svgPoints, setSvgPoints] = useState<string[]>()
 
   useEffect(() => {
     async function initGame() {
@@ -105,6 +105,7 @@ export default Cave
 const StyledCave = styled.div`
   overflow: hidden;
   max-height: 70vh;
+  margin-top: 50px;
 
   & svg {
     margin-top: 30px;

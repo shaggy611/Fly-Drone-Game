@@ -3,6 +3,8 @@ import WelcomeBoard from './components/WelcomeBoard'
 import Cave from './components/Cave'
 import { useBoundStore } from './store'
 import { Button } from '@mui/material'
+import Drone from './components/Drone'
+import styled from 'styled-components'
 
 function App() {
   const start = useBoundStore((state) => state.start)
@@ -27,7 +29,10 @@ function App() {
       </Button>
 
       {start ? (
-        <Cave />
+        <CaveWrapper>
+          <Cave />
+          <Drone />
+        </CaveWrapper>
       ) : (
         <>
           <WelcomeBoard></WelcomeBoard>
@@ -38,3 +43,7 @@ function App() {
 }
 
 export default App
+
+const CaveWrapper = styled.div`
+  position: relative;
+`
