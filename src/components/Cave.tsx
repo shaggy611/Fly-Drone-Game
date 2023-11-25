@@ -75,6 +75,8 @@ function Cave() {
 export default Cave
 
 const StyledCave = styled.div`
+  overflow: hidden;
+  
   & svg {
     margin-top: 30px;
     background-color: antiquewhite;
