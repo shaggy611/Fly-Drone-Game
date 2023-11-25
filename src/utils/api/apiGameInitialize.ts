@@ -1,16 +1,16 @@
 import axios from 'axios'
-import { useBoundStore } from '../store'
+import { useBoundStore } from '../../store'
 
 const ROOT_URL: string = 'https://cave-drone-server.shtoa.xyz'
 
 export async function apiInitGame() {
   try {
     const response = await axios.post(`${ROOT_URL}/init`, {
-      name: 'Shaggy',
-      complexity: 5,
+      name: useBoundStore.getState().playerName,
+      complexity: useBoundStore.getState().gameComplexity,
     })
 
-    const id = response.data.id
+    const id: string = response.data.id
 
     const result = await Promise.all([
       getTokenChunk(1, id),

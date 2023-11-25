@@ -2,28 +2,14 @@ import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useBoundStore } from '../store'
 import styled from 'styled-components'
-import apiGetCaveCoords from '../utils/apiGetCaveCoords'
+import apiGetCaveCoords from '../utils/api/apiGetCaveCoords'
+import prepareCoordsForSVG from '../utils/prepareCoordsForSVG'
 
 function Cave() {
   const cords = useBoundStore((state) => state.caveCoords)
-  const [svgPoints, setSvgPoints] = useState()
+  const [svgPoints, setSvgPoints] = useState<string[]>()
 
-  const polygonHeight = 12
-
-  const generateCaveSVG = () => {
-    let cordsString = []
-
-    if (cords.length > 0) {
-      for (let i = 0; i < cords.length - 1; i++) {
-        const [x1, y1] = cords[i].split(',').map(Number)
-        const [x2, y2] = cords[i + 1].split(',').map(Number)
-
-        cordsString.push(`${x1};${y1};${x2};${y2}`)
-      }
-
-      return cordsString
-    }
-  }
+  const caveBuildBlock = useBoundStore((state) => state.caveBlockHeight)
 
   useEffect(() => {
     async function getCaveCoords() {
@@ -35,7 +21,7 @@ function Cave() {
 
   useEffect(() => {
     if (cords.length > 0) {
-      const stringSVG = generateCaveSVG()
+      const stringSVG = prepareCoordsForSVG(cords)
       setSvgPoints(stringSVG)
     }
 
@@ -45,28 +31,33 @@ function Cave() {
   return (
     <StyledCave>
       {svgPoints ? (
-        <svg width='500' height='10000' xmlns='http://www.w3.org/2000/svg'>
+        <svg
+          width='500'
+          height={cords.length * caveBuildBlock}
+          xmlns='http://www.w3.org/2000/svg'>
           {svgPoints.map((item, index) => {
             const [x1, y1, x2, y2] = item.split(';').map(Number)
 
             return (
               <g key={uuidv4()}>
                 <polygon
-                  points={`0,${polygonHeight * index}      ${250 + x1},${
-                    polygonHeight * index
-                  }        ${250 + x2},${
-                    polygonHeight * index + polygonHeight
-                  }       0,${polygonHeight * index + polygonHeight}`}
+                  points={`
+                  0,${caveBuildBlock * index} 
+                  ${250 + x1},${caveBuildBlock * index}
+                  ${250 + x2},${caveBuildBlock * index + caveBuildBlock} 
+                  0,${caveBuildBlock * index + caveBuildBlock}
+                  `}
                   stroke='black'
                   fill='black'
                 />
 
                 <polygon
-                  points={`${250 + y1},${polygonHeight * index}      500,${
-                    polygonHeight * index
-                  }        500,${polygonHeight * index + polygonHeight}       ${
-                    250 + y2
-                  },${polygonHeight * index + polygonHeight}`}
+                  points={`
+                  ${250 + y1},${caveBuildBlock * index} 
+                  500,${caveBuildBlock * index} 
+                  500,${caveBuildBlock * index + caveBuildBlock} 
+                  ${250 + y2},${caveBuildBlock * index + caveBuildBlock}
+                  `}
                   stroke='black'
                   fill='black'
                 />

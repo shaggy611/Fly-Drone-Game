@@ -2,11 +2,19 @@ import { Button, Container, Divider } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import styled from 'styled-components'
 import ScoreTable from './ScoreTable'
-import ComplexitySlider from './ComplexitySlider'
 import { useBoundStore } from '../store'
+import ComplexitySlider from './ComplexitySlider'
+import Box from '@mui/material/Box'
+import TextField from '@mui/material/TextField'
 
 function WelcomeBoard() {
   const setStart = useBoundStore((state) => state.setStart)
+  const playerName = useBoundStore((state) => state.playerName)
+  const setPlayerName = useBoundStore((state) => state.setPlayerName)
+
+  function startGame() {
+    setStart()
+  }
 
   return (
     <StledWelcomeBoard>
@@ -35,6 +43,20 @@ function WelcomeBoard() {
       <StyledContainer
         sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
         maxWidth='sm'>
+        <Box component='form' noValidate autoComplete='off'>
+          <TextField
+            id='outlined-basic'
+            label='Write your name'
+            variant='outlined'
+            color='secondary'
+            value={playerName}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setPlayerName(event.target.value)
+            }}
+            fullWidth
+          />
+        </Box>
+
         <ComplexitySlider />
       </StyledContainer>
 
@@ -42,7 +64,8 @@ function WelcomeBoard() {
         variant='contained'
         size='large'
         sx={{ width: '100%' }}
-        onClick={() => setStart()}>
+        onClick={() => startGame()}
+        disabled={playerName.length > 0 ? false : true}>
         START GAME
       </Button>
     </StledWelcomeBoard>

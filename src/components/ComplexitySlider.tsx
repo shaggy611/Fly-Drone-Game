@@ -2,13 +2,13 @@ import Slider from '@mui/material/Slider'
 import styled from 'styled-components'
 import { useTheme } from '@mui/material/styles'
 import { Typography } from '@mui/material'
-
-function valuetext(value: number) {
-  return `${value} level`
-}
+import { useBoundStore } from '../store'
 
 function ComplexitySlider() {
   const theme = useTheme()
+  const gameComplexity = useBoundStore((state) => state.gameComplexity)
+  const setGameComplexity = useBoundStore((state) => state.setGameComplexity)
+
   return (
     <>
       <Typography
@@ -16,13 +16,15 @@ function ComplexitySlider() {
         pt={3}
         align='center'
         gutterBottom>
-        Choose difficukty level:
+        Choose difficulty level:
       </Typography>
 
       <StyledSlider
+        onChange={(event: Event, newValue: number | number[]) => {
+          setGameComplexity(newValue as number)
+        }}
+        value={gameComplexity}
         aria-label='Complexity level'
-        defaultValue={1}
-        getAriaValueText={valuetext}
         valueLabelDisplay='auto'
         step={1}
         marks

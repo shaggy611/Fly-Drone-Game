@@ -11,8 +11,13 @@ export interface caveStore {
 }
 
 export interface globalGameStore {
+  playerName: string
+  gameComplexity: number
   loading: boolean
   start: boolean
+  caveBlockHeight: number
   setLoading: () => void
   setStart: () => void
+  setPlayerName: (payload: string) => void
+  setGameComplexity: (payload: number) => void
 }

@@ -1,4 +1,4 @@
-import { useBoundStore } from '../store'
+import { useBoundStore } from '../../store'
 
 const apiGetCaveCoords = async () => {
   const socket = new WebSocket('wss://cave-drone-server.shtoa.xyz/cave')
