@@ -2,7 +2,7 @@ import {
   gameInitializeStore,
   caveStore,
   globalGameStore,
-  droneStore
+  droneStore,
 } from './../types/index'
 import { StateCreator } from 'zustand'
 
@@ -13,7 +13,9 @@ const createCaveSlice: StateCreator<
   caveStore
 > = (set) => ({
   caveCoords: [],
+  caveSvgPoints: [],
   setCaveCoords: (payload) => set(() => ({ caveCoords: payload })),
+  setCaveSvgPoints: (payload) => set(() => ({ caveSvgPoints: payload })),
 })
 
 export default createCaveSlice

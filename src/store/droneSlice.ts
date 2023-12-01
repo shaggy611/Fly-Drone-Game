@@ -13,7 +13,9 @@ import {
     droneStore
   > = (set) => ({
     position: [0, 0],
+    edgesPoints: [],
     setPosition: (payload) => set(() => ({ position: payload })),
+    setEdgesPoints: (payload) => set(() => ({edgesPoints: [...payload]}))
   })
   
   export default createDroneSlice

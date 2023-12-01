@@ -7,7 +7,9 @@ export interface gameInitializeStore {
 
 export interface caveStore {
   caveCoords: string[]
+  caveSvgPoints: string[]
   setCaveCoords: (payload: string[]) => void
+  setCaveSvgPoints: (payload: string[]) => void
 }
 
 export interface globalGameStore {
@@ -24,5 +26,7 @@ export interface globalGameStore {
 
 export interface droneStore {
   position: number[]
-  setPosition: (uayload: number[]) => void
+  edgesPoints: []
+  setPosition: (payload: number[]) => void
+  setEdgesPoints: (payload: []) => void
 }
