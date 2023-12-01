@@ -1,18 +1,19 @@
-import { KeyboardEvent, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useBoundStore } from '../store'
+import { changeDronePosition } from '../types'
 
 export default function Drone() {
   const position = useBoundStore((state) => state.position)
   const setPosition = useBoundStore((state) => state.setPosition)
-  const drone = useRef(null)
-  const dronePolygon = useRef(null)
+  const caveBlockHeight = useBoundStore((state) => state.caveBlockHeight)
+  const dronePolygon = useRef<SVGPolygonElement>(null)
 
   const dronePosition = {
     transform: `translate(${position[0]}px, ${position[1]}px)`,
   }
 
-  function changeDronePosition(event: KeyboardEvent<HTMLDivElement>) {
+  const changeDronePosition: changeDronePosition = (event) => {
     switch (event.key) {
       case 'ArrowLeft':
         setPosition([(position[0] -= 1), position[1]])
@@ -37,26 +38,19 @@ export default function Drone() {
 
   useEffect(() => {
     const cave = document.querySelector('#cave')
-    const caveRef = document.querySelector('#cave').getBoundingClientRect()
-    const caveAllBlocks = document.querySelectorAll('g')
-    const droneRef = dronePolygon.current.getBoundingClientRect()
+    const caveRef = document.querySelector('#cave')?.getBoundingClientRect()
+    const caveAllBlocks = document.querySelectorAll('#cave g')
+    const droneRef = dronePolygon?.current?.getBoundingClientRect()
     const relativeDronePosTop =
-      Math.floor(
-        (dronePolygon.current.getBoundingClientRect().bottom -
-          caveRef.top -
-          11) /
-          12
-      ) + 1
-
-    const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
+      Math.floor((droneRef!.bottom - caveRef!.top - 11) / caveBlockHeight) + 1
 
     if (caveAllBlocks.length > 0) {
       const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop].firstChild
       const caveCurrentRightBlock = caveAllBlocks[relativeDronePosTop].lastChild
 
       const horizontColision =
-        droneRef.left <= caveCurrentLeftBlock.getBoundingClientRect().right ||
-        droneRef.right >= caveCurrentRightBlock.getBoundingClientRect().left
+        droneRef!.left <= caveCurrentLeftBlock!.getBoundingClientRect().right ||
+        droneRef!.right >= caveCurrentRightBlock!.getBoundingClientRect().left
 
       if (horizontColision) {
         console.log('colision')
@@ -86,11 +80,7 @@ export default function Drone() {
 
   return (
     <StyledDrone dronePosition={position} style={dronePosition}>
-      <svg
-        ref={drone}
-        width='20'
-        height='11'
-        xmlns='http://www.w3.org/2000/svg'>
+      <svg width='20' height='11' xmlns='http://www.w3.org/2000/svg'>
         <polygon ref={dronePolygon} points='0,0 20,0 10,11' />
       </svg>
     </StyledDrone>

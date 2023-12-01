@@ -1,3 +1,5 @@
+import { KeyboardEvent} from 'react'
+
 export interface gameInitializeStore {
   token: string
   id: string
@@ -30,3 +32,5 @@ export interface droneStore {
   setPosition: (payload: number[]) => void
   setEdgesPoints: (payload: []) => void
 }
+
+export type changeDronePosition = (event: KeyboardEvent<HTMLDivElement>) => void
