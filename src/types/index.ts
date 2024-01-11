@@ -1,4 +1,4 @@
-import { KeyboardEvent} from 'react'
+import { KeyboardEvent } from 'react'
 
 export interface gameInitializeStore {
   token: string
@@ -20,8 +20,12 @@ export interface globalGameStore {
   loading: boolean
   start: boolean
   caveBlockHeight: number
+  gameFailed: boolean
+  gameSuccess: boolean
   setLoading: () => void
   setStart: () => void
+  setGameFailed: () => void
+  setGameSuccess: () => void
   setPlayerName: (payload: string) => void
   setGameComplexity: (payload: number) => void
 }
@@ -29,7 +33,7 @@ export interface globalGameStore {
 export interface droneStore {
   position: number[]
   edgesPoints: []
-  setPosition: (payload: number[]) => void
+  setPosition: (payload: [number, number]) => void
   setEdgesPoints: (payload: []) => void
 }
 

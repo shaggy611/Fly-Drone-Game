@@ -17,7 +17,7 @@ function WelcomeBoard() {
   }
 
   return (
-    <StledWelcomeBoard>
+    <StyledWelcomeBoard>
       <StyledContainer
         sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
         maxWidth='sm'>
@@ -68,7 +68,7 @@ function WelcomeBoard() {
         disabled={playerName.length > 0 ? false : true}>
         START GAME
       </Button>
-    </StledWelcomeBoard>
+    </StyledWelcomeBoard>
   )
 }
 
@@ -82,7 +82,7 @@ const StyledContainer = styled(Container)`
   margin-bottom: 20px;
 `
 
-const StledWelcomeBoard = styled.div`
+const StyledWelcomeBoard = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;

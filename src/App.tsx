@@ -5,11 +5,14 @@ import { useBoundStore } from './store'
 import { Button } from '@mui/material'
 import Drone from './components/Drone'
 import styled from 'styled-components'
+import FailedGame from './components/FailedGame'
 
 function App() {
   const start = useBoundStore((state) => state.start)
   const setStart = useBoundStore((state) => state.setStart)
   const setId = useBoundStore((state) => state.setId)
+  const gameFailed = useBoundStore((state) => state.gameFailed)
+  const gameSuccess = useBoundStore((state) => state.gameSuccess)
   const setToken = useBoundStore((state) => state.setToken)
   const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
 
@@ -34,9 +37,7 @@ function App() {
           <Drone />
         </CaveWrapper>
       ) : (
-        <>
-          <WelcomeBoard></WelcomeBoard>
-        </>
+        <>{gameFailed ? <FailedGame /> : <WelcomeBoard />}</>
       )}
     </>
   )

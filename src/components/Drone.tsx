@@ -7,6 +7,10 @@ export default function Drone() {
   const position = useBoundStore((state) => state.position)
   const setPosition = useBoundStore((state) => state.setPosition)
   const caveBlockHeight = useBoundStore((state) => state.caveBlockHeight)
+  const setGameFailed = useBoundStore((state) => state.setGameFailed)
+  const setGameSuccess = useBoundStore((state) => state.setGameSuccess)
+  const setStart = useBoundStore((state) => state.setStart)
+  const loading = useBoundStore((state) => state.loading)
   const dronePolygon = useRef<SVGPolygonElement>(null)
 
   const dronePosition = {
@@ -31,59 +35,50 @@ export default function Drone() {
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', changeDronePosition)
+    if (!loading) {
+      document.addEventListener('keydown', changeDronePosition)
+    }
 
     return () => document.removeEventListener('keydown', changeDronePosition)
-  }, [])
+  }, [loading])
 
   useEffect(() => {
-    const cave = document.querySelector('#cave')
-    const caveRef = document.querySelector('#cave')?.getBoundingClientRect()
+    const caveSize = document.querySelector('#cave')?.getBoundingClientRect()
     const caveAllBlocks = document.querySelectorAll('#cave g')
-    const droneRef = dronePolygon?.current?.getBoundingClientRect()
+    const droneSize = dronePolygon?.current?.getBoundingClientRect()
+
     const relativeDronePosTop =
-      Math.floor((droneRef!.bottom - caveRef!.top - 11) / caveBlockHeight) + 1
+      Math.floor((droneSize!.bottom - caveSize!.top - 11) / caveBlockHeight) + 1
 
     if (caveAllBlocks.length > 0) {
       const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop].firstChild
       const caveCurrentRightBlock = caveAllBlocks[relativeDronePosTop].lastChild
 
       const horizontColision =
-        droneRef!.left <= caveCurrentLeftBlock!.getBoundingClientRect().right ||
-        droneRef!.right >= caveCurrentRightBlock!.getBoundingClientRect().left
+        droneSize!.left <=
+          caveCurrentLeftBlock!.getBoundingClientRect().right ||
+        droneSize!.right >= caveCurrentRightBlock!.getBoundingClientRect().left
 
       if (horizontColision) {
-        console.log('colision')
+        setGameFailed()
+        setStart()
       }
     }
-
-    // caveAllBlocks.forEach((box, index) => {
-    //   const caveBox = box.getBoundingClientRect()
-
-    //   if (dronePolygon.current && cave) {
-    //     const droneRef = dronePolygon.current.getBoundingClientRect()
-
-    //     const horizontColision =
-    //       (index % 2 === 0 && droneRef.left <= caveBox.right) ||
-    //       (index % 2 !== 0 && droneRef.right >= caveBox.left)
-
-    //     const verticalColision =
-    //       droneRef.top <= caveBox.bottom && droneRef.bottom >= caveBox.top
-
-    //     if (horizontColision && verticalColision) {
-    //       // console.log('colision')
-    //     }
-
-    //   }
-    // })
-  }, [position])
+  }, [position, caveBlockHeight])
 
   return (
-    <StyledDrone dronePosition={position} style={dronePosition}>
-      <svg width='20' height='11' xmlns='http://www.w3.org/2000/svg'>
-        <polygon ref={dronePolygon} points='0,0 20,0 10,11' />
-      </svg>
-    </StyledDrone>
+    <>
+      {' '}
+      {loading ? (
+        ''
+      ) : (
+        <StyledDrone dronePosition={position} style={dronePosition}>
+          <svg width='20' height='11' xmlns='http://www.w3.org/2000/svg'>
+            <polygon ref={dronePolygon} points='0,0 20,0 10,11' />
+          </svg>
+        </StyledDrone>
+      )}
+    </>
   )
 }
 
