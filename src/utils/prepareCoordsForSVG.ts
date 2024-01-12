@@ -1,4 +1,4 @@
-const prepareCoordsForSVG = (coords: string[]) => {
+const prepareCoordsForSVG = (coords: string[]): string[] => {
   const cordsString = []
 
   if (coords.length > 0) {
@@ -11,6 +11,7 @@ const prepareCoordsForSVG = (coords: string[]) => {
 
     return cordsString
   }
+  return []
 }
 
 export default prepareCoordsForSVG

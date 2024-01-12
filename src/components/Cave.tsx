@@ -22,7 +22,7 @@ function Cave() {
     }
     initGame()
     setLoading()
-  }, [])
+  }, [setLoading])
 
   useEffect(() => {
     async function getCaveCoords() {
@@ -40,7 +40,7 @@ function Cave() {
       setCaveSvgPoints(stringSVG)
       setLoading()
     }
-  }, [cords])
+  }, [cords, setCaveSvgPoints, setLoading])
 
   return (
     <>
