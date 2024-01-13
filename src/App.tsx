@@ -12,16 +12,15 @@ function App() {
   const setStart = useBoundStore((state) => state.setStart)
   const setId = useBoundStore((state) => state.setId)
   const gameFailed = useBoundStore((state) => state.gameFailed)
-  const gameSuccess = useBoundStore((state) => state.gameSuccess)
+  // const gameSuccess = useBoundStore((state) => state.gameSuccess)
   const setToken = useBoundStore((state) => state.setToken)
   const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
 
   return (
     <>
-      <Button
+      <StyledButton
         variant='contained'
-        size='large'
-        sx={{ width: '100%' }}
+        size='small'
         onClick={() => {
           setStart()
           setId('')
@@ -29,7 +28,7 @@ function App() {
           setCaveCoords([])
         }}>
         RESET GAME
-      </Button>
+      </StyledButton>
 
       {start ? (
         <CaveWrapper>
@@ -47,4 +46,9 @@ export default App
 
 const CaveWrapper = styled.div`
   position: relative;
+`
+
+const StyledButton = styled(Button)`
+  max-width: 500px;
+  width: 100%;
 `

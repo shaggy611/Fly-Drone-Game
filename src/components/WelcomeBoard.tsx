@@ -76,7 +76,6 @@ export default WelcomeBoard
 
 const StyledContainer = styled(Container)`
   width: 100%;
-  /* height: 300px; */
   padding: 20px;
   border-radius: 20px;
   margin-bottom: 20px;
@@ -87,4 +86,6 @@ const StyledWelcomeBoard = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 100%;
 `
