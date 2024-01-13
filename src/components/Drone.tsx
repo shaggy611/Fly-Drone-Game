@@ -1,46 +1,52 @@
 import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useBoundStore } from '../store'
-import { changeDronePosition } from '../types'
+import useDronePosition from '../hooks/useDronePosition'
 
 export default function Drone() {
   const position = useBoundStore((state) => state.position)
-  const setPosition = useBoundStore((state) => state.setPosition)
   const caveBlockHeight = useBoundStore((state) => state.caveBlockHeight)
   const setGameFailed = useBoundStore((state) => state.setGameFailed)
-  const setGameSuccess = useBoundStore((state) => state.setGameSuccess)
   const setStart = useBoundStore((state) => state.setStart)
   const loading = useBoundStore((state) => state.loading)
   const dronePolygon = useRef<SVGPolygonElement>(null)
+  //const setGameSuccess = useBoundStore((state) => state.setGameSuccess)
+  // const setPosition = useBoundStore((state) => state.setPosition)
 
   const dronePosition = {
     transform: `translate(${position[0]}px, ${position[1]}px)`,
   }
 
-  const changeDronePosition: changeDronePosition = (event) => {
-    switch (event.key) {
-      case 'ArrowLeft':
-        setPosition([(position[0] -= 1), position[1]])
-        break
-      case 'ArrowRight':
-        setPosition([(position[0] += 1), position[1]])
-        break
-      case 'ArrowUp':
-        setPosition([position[0], (position[1] -= 1)])
-        break
-      case 'ArrowDown':
-        setPosition([position[0], (position[1] += 1)])
-        break
-    }
-  }
+  useDronePosition()
 
-  useEffect(() => {
-    if (!loading) {
-      document.addEventListener('keydown', changeDronePosition)
-    }
+  // const ChangeDronePosition = (event: KeyboardEvent) => {
+  //   useDronePosition(event)
+  // }
 
-    return () => document.removeEventListener('keydown', changeDronePosition)
-  }, [loading])
+  // const changeDronePosition: changeDronePosition = (event) => {
+  //   switch (event.key) {
+  //     case 'ArrowLeft':
+  //       setPosition([(position[0] -= 1), position[1]])
+  //       break
+  //     case 'ArrowRight':
+  //       setPosition([(position[0] += 1), position[1]])
+  //       break
+  //     case 'ArrowUp':
+  //       setPosition([position[0], (position[1] -= 1)])
+  //       break
+  //     case 'ArrowDown':
+  //       setPosition([position[0], (position[1] += 1)])
+  //       break
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   if (!loading) {
+  //     document.addEventListener('keydown', ChangeDronePosition)
+  //   }
+
+  //   return () => document.removeEventListener('keydown', ChangeDronePosition)
+  // }, [loading])
 
   useEffect(() => {
     const caveSize = document.querySelector('#cave')?.getBoundingClientRect()
@@ -64,7 +70,7 @@ export default function Drone() {
         setStart()
       }
     }
-  }, [position, caveBlockHeight])
+  }, [position, caveBlockHeight, setGameFailed, setStart])
 
   return (
     <>

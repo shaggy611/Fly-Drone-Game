@@ -1,19 +1,8 @@
-import { KeyboardEvent } from 'react'
+// import { KeyboardEvent } from 'react'
 
-export interface gameInitializeStore {
-  token: string
-  id: string
-  setToken: (param: string) => void
-  setId: (param: string) => void
+export interface KeyboardEvent {
+  key: string
 }
-
-export interface caveStore {
-  caveCoords: string[]
-  caveSvgPoints: string[]
-  setCaveCoords: (payload: string[]) => void
-  setCaveSvgPoints: (payload: string[]) => void
-}
-
 export interface globalGameStore {
   playerName: string
   gameComplexity: number
@@ -30,11 +19,25 @@ export interface globalGameStore {
   setGameComplexity: (payload: number) => void
 }
 
-export interface droneStore {
-  position: number[]
-  edgesPoints: []
-  setPosition: (payload: [number, number]) => void
-  setEdgesPoints: (payload: []) => void
+export interface gameInitializeStore {
+  token: string
+  id: string
+  setToken: (param: string) => void
+  setId: (param: string) => void
 }
 
-export type changeDronePosition = (event: KeyboardEvent<HTMLDivElement>) => void
+export interface caveStore {
+  caveCoords: string[]
+  caveSvgPoints: string[]
+  setCaveCoords: (payload: string[]) => void
+  setCaveSvgPoints: (payload: string[]) => void
+}
+
+export interface droneStore {
+  position: number[]
+  edgesPoints: number[][]
+  setPosition: (payload: [number, number]) => void
+  setEdgesPoints: (payload: number[][]) => void
+}
+
+export type changeDronePosition = () => void

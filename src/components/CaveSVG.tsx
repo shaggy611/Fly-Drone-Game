@@ -1,20 +1,20 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useBoundStore } from '../store'
-import stringCoordsToArrayNumbers from '../utils/stringCoordsToArrayNumbers'
+// import stringCoordsToArrayNumbers from '../utils/stringCoordsToArrayNumbers'
 
 export default function CaveSVG() {
   const cords = useBoundStore((state) => state.caveCoords)
   const caveBuildBlock = useBoundStore((state) => state.caveBlockHeight)
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
-  const setEdgesPoints = useBoundStore((state) => state.setEdgesPoints)
-  const translatedCoords = stringCoordsToArrayNumbers(cords, caveBuildBlock)
+  // const setEdgesPoints = useBoundStore((state) => state.setEdgesPoints)
+  // const translatedCoords = stringCoordsToArrayNumbers(cords, caveBuildBlock)
 
 
 
-  useEffect(() => {
-    setEdgesPoints(translatedCoords)
-  }, [translatedCoords, setEdgesPoints])
+  // useEffect(() => {
+  //   setEdgesPoints(translatedCoords)
+  // }, [translatedCoords, setEdgesPoints])
 
   return (
     <svg
