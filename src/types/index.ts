@@ -35,9 +35,12 @@ export interface caveStore {
 
 export interface droneStore {
   position: number[]
+  speed: number
   edgesPoints: number[][]
   setPosition: (payload: [number, number]) => void
   setEdgesPoints: (payload: number[][]) => void
+  setSpeedUp: () => void
+  setSpeedDown: () => void
 }
 
 export type changeDronePosition = () => void

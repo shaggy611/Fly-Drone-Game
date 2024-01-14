@@ -13,9 +13,12 @@ import {
     droneStore
   > = (set) => ({
     position: [0, 0],
+    speed: 0,
     edgesPoints: [],
     setPosition: (payload) => set(() => ({ position: payload })),
-    setEdgesPoints: (payload) => set(() => ({edgesPoints: [...payload]}))
+    setEdgesPoints: (payload) => set(() => ({edgesPoints: [...payload]})),
+    setSpeedUp: () => set((state) => ({speed: state.speed + 1})),
+    setSpeedDown: () => set((state) => ({speed: state.speed - 1}))
   })
   
   export default createDroneSlice
