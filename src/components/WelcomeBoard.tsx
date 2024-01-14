@@ -82,10 +82,16 @@ const StyledContainer = styled(Container)`
 `
 
 const StyledWelcomeBoard = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   max-width: 500px;
   width: 100%;
+  height: 100%;
 `

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import apiGetCaveCoords from '../utils/api/apiGetCaveCoords'
 import prepareCoordsForSVG from '../utils/prepareCoordsForSVG'
 import { apiInitGame } from '../utils/api/apiGameInitialize'
-import { LinearProgress, Typography } from '@mui/material'
 import CaveSVG from './CaveSVG'
 
 function Cave() {
@@ -14,7 +13,6 @@ function Cave() {
   const setLoading = useBoundStore((state) => state.setLoading)
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
   const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
-  
 
   useEffect(() => {
     async function initGame() {
@@ -45,20 +43,9 @@ function Cave() {
   return (
     <>
       {loading ? (
-        <>
-          <LinearProgress color='success' />
-          <Typography
-            sx={{ fontSize: '1rem' }}
-            p={0}
-            align='center'
-            gutterBottom>
-            Loading game data...
-          </Typography>
-        </>
+        ''
       ) : (
-        <StyledCave>
-          {caveSvgPoints ? <CaveSVG /> : ''}
-        </StyledCave>
+        <StyledCave>{caveSvgPoints ? <CaveSVG /> : ''}</StyledCave>
       )}
     </>
   )
