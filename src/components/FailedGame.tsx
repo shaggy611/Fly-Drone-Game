@@ -11,7 +11,11 @@ export default function FailedGame() {
 
   return (
     <StyledFailedGame>
-      <Typography sx={{ fontSize: '1.5rem' }} p={0} align='center' gutterBottom>
+      <Typography
+        sx={{ fontSize: '1.5rem', width: '100%' }}
+        p={0}
+        align='center'
+        gutterBottom>
         Failed! The drone collided with the wall
       </Typography>
 
