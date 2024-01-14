@@ -7,6 +7,8 @@ const useDronePosition: changeDronePosition = () => {
   const position = useBoundStore((state) => state.position)
   const setPosition = useBoundStore((state) => state.setPosition)
   const loading = useBoundStore((state) => state.loading)
+  const setSpeedUp = useBoundStore((state) => state.setSpeedUp)
+  const setSpeedDown = useBoundStore((state) => state.setSpeedDown)
 
   useEffect(() => {
     const changeDronePosition = (event: KeyboardEvent) => {
@@ -18,10 +20,12 @@ const useDronePosition: changeDronePosition = () => {
           setPosition([position[0] + 1, position[1]])
           break
         case 'ArrowUp':
-          setPosition([position[0], position[1] - 1])
+          // setPosition([position[0], position[1] - 1])
+          setSpeedDown()
           break
         case 'ArrowDown':
-          setPosition([position[0], position[1] + 1])
+          // setPosition([position[0], position[1] + 1])
+          setSpeedUp()
           break
       }
     }
