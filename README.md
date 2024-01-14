@@ -1,4 +1,4 @@
-# React + Redux + TypeScript + AXIOS + MUI + Vite
+# React + Zustand + TypeScript + AXIOS + socket.io + MUI + Vite
 
 ## To run the project type:
 
