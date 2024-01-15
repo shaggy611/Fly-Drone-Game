@@ -19,7 +19,6 @@ function Cave() {
   useEffect(() => {
     if (caveRef.current && speed !== 0) {
       caveRef.current.style.transform = `translateY(${speed}px)`
-      console.log('speed')
     }
   }, [speed])
 

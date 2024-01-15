@@ -1,9 +1,9 @@
-import { changeDronePosition } from '../types'
+import { changeDronePositionSpeed } from '../types'
 import { useBoundStore } from './../store/index'
 import { useEffect } from 'react'
 import { KeyboardEvent } from '../types/index'
 
-const useDronePosition: changeDronePosition = () => {
+const useDronePositionSpeed: changeDronePositionSpeed = () => {
   const position = useBoundStore((state) => state.position)
   const setPosition = useBoundStore((state) => state.setPosition)
   const loading = useBoundStore((state) => state.loading)
@@ -38,4 +38,4 @@ const useDronePosition: changeDronePosition = () => {
   }, [loading, position, setPosition, setSpeedDown, setSpeedUp])
 }
 
-export default useDronePosition
+export default useDronePositionSpeed

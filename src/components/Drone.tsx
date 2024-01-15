@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useBoundStore } from '../store'
-import useDronePosition from '../hooks/useDronePosition'
+import useDronePositionSpeed from '../hooks/useDronePosition'
 
 export default function Drone() {
   const position = useBoundStore((state) => state.position)
@@ -10,43 +10,12 @@ export default function Drone() {
   const setStart = useBoundStore((state) => state.setStart)
   const loading = useBoundStore((state) => state.loading)
   const dronePolygon = useRef<SVGPolygonElement>(null)
-  //const setGameSuccess = useBoundStore((state) => state.setGameSuccess)
-  // const setPosition = useBoundStore((state) => state.setPosition)
 
   const dronePosition = {
     transform: `translate(${position[0]}px, ${position[1]}px)`,
   }
 
-  useDronePosition()
-
-  // const ChangeDronePosition = (event: KeyboardEvent) => {
-  //   useDronePosition(event)
-  // }
-
-  // const changeDronePosition: changeDronePosition = (event) => {
-  //   switch (event.key) {
-  //     case 'ArrowLeft':
-  //       setPosition([(position[0] -= 1), position[1]])
-  //       break
-  //     case 'ArrowRight':
-  //       setPosition([(position[0] += 1), position[1]])
-  //       break
-  //     case 'ArrowUp':
-  //       setPosition([position[0], (position[1] -= 1)])
-  //       break
-  //     case 'ArrowDown':
-  //       setPosition([position[0], (position[1] += 1)])
-  //       break
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   if (!loading) {
-  //     document.addEventListener('keydown', ChangeDronePosition)
-  //   }
-
-  //   return () => document.removeEventListener('keydown', ChangeDronePosition)
-  // }, [loading])
+  useDronePositionSpeed()
 
   useEffect(() => {
     const caveSize = document.querySelector('#cave')?.getBoundingClientRect()
@@ -57,8 +26,10 @@ export default function Drone() {
       Math.floor((droneSize!.bottom - caveSize!.top - 11) / caveBlockHeight) + 1
 
     if (caveAllBlocks.length > 0) {
-      const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop].firstChild
-      const caveCurrentRightBlock = caveAllBlocks[relativeDronePosTop].lastChild
+      const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
+        .firstChild as HTMLElement
+      const caveCurrentRightBlock = caveAllBlocks[relativeDronePosTop]
+        .lastChild as HTMLElement
 
       const horizontColision =
         droneSize!.left <=

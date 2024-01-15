@@ -43,4 +43,4 @@ export interface droneStore {
   setSpeedDown: () => void
 }
 
-export type changeDronePosition = () => void
+export type changeDronePositionSpeed = () => void
