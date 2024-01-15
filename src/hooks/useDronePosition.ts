@@ -35,7 +35,7 @@ const useDronePosition: changeDronePosition = () => {
     }
 
     return () => document.removeEventListener('keydown', changeDronePosition)
-  }, [loading, position, setPosition])
+  }, [loading, position, setPosition, setSpeedDown, setSpeedUp])
 }
 
 export default useDronePosition

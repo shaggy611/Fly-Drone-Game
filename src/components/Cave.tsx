@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useBoundStore } from '../store'
 import styled from 'styled-components'
 import apiGetCaveCoords from '../utils/api/apiGetCaveCoords'
@@ -13,6 +13,15 @@ function Cave() {
   const setLoading = useBoundStore((state) => state.setLoading)
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
   const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
+  const speed = useBoundStore((state) => state.speed)
+  const caveRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (caveRef.current && speed !== 0) {
+      caveRef.current.style.transform = `translateY(${speed}px)`
+      console.log('speed')
+    }
+  }, [speed])
 
   useEffect(() => {
     async function initGame() {
@@ -45,7 +54,15 @@ function Cave() {
       {loading ? (
         ''
       ) : (
-        <StyledCave>{caveSvgPoints ? <CaveSVG /> : ''}</StyledCave>
+        <StyledCave>
+          {caveSvgPoints ? (
+            <CaveSVGWrapper ref={caveRef}>
+              <CaveSVG />
+            </CaveSVGWrapper>
+          ) : (
+            ''
+          )}
+        </StyledCave>
       )}
     </>
   )
@@ -63,3 +80,5 @@ const StyledCave = styled.div`
     background-color: antiquewhite;
   }
 `
+
+const CaveSVGWrapper = styled.div``
