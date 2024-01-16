@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useBoundStore } from '../store'
 import styled from 'styled-components'
 import apiGetCaveCoords from '../utils/api/apiGetCaveCoords'
@@ -15,12 +15,28 @@ function Cave() {
   const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
   const speed = useBoundStore((state) => state.speed)
   const caveRef = useRef<HTMLDivElement | null>(null)
+  const speedIntervalRef = useRef<number | null>(null)
+
+  const [distance, setDistance] = useState(0)
 
   useEffect(() => {
-    if (caveRef.current && speed !== 0) {
-      caveRef.current.style.transform = `translateY(${speed}px)`
+    function droneSpeedChange() {
+      if (speed === 0) {
+        clearInterval(speedIntervalRef.current!)
+      }
+      setDistance((prevDistance) => prevDistance + speed)
     }
-  }, [speed])
+
+    speedIntervalRef.current = setInterval(droneSpeedChange, 1000)
+
+    return () => clearInterval(speedIntervalRef.current!)
+  }, [speed, distance])
+
+  useEffect(() => {
+    if (caveRef.current && distance !== 0) {
+      caveRef.current.style.transform = `translateY(-${distance}px)`
+    }
+  }, [distance])
 
   useEffect(() => {
     async function initGame() {

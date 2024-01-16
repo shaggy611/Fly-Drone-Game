@@ -34,7 +34,9 @@ const useDronePositionSpeed: changeDronePositionSpeed = () => {
       document.addEventListener('keydown', changeDronePosition)
     }
 
-    return () => document.removeEventListener('keydown', changeDronePosition)
+    return () => {
+      document.removeEventListener('keydown', changeDronePosition)
+    }
   }, [loading, position, setPosition, setSpeedDown, setSpeedUp])
 }
 
