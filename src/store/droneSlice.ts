@@ -12,18 +12,23 @@ const createDroneSlice: StateCreator<
   [],
   droneStore
 > = (set) => ({
-  position: [0, 0],
-  speed: 0,
+  horizontalSpeed: 0,
+  verticalSpeed: 0,
   edgesPoints: [],
-  setPosition: (payload) => set(() => ({ position: payload })),
+  setHorizontalSpeed: (payload) =>
+    set((state) => ({ horizontalSpeed: state.horizontalSpeed + payload })),
   setEdgesPoints: (payload) => set(() => ({ edgesPoints: [...payload] })),
-  setSpeedUp: () =>
+  setVerticalSpeedUp: () =>
     set((state) => ({
-      speed: state.speed <= 5 ? state.speed + 1 : state.speed,
+      verticalSpeed:
+        state.verticalSpeed <= 5
+          ? state.verticalSpeed + 1
+          : state.verticalSpeed,
     })),
-  setSpeedDown: () =>
+  setVerticalSpeedDown: () =>
     set((state) => ({
-      speed: state.speed > 0 ? state.speed - 1 : state.speed,
+      verticalSpeed:
+        state.verticalSpeed > 1 ? state.verticalSpeed - 1 : state.verticalSpeed,
     })),
 })
 

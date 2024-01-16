@@ -13,24 +13,25 @@ function Cave() {
   const setLoading = useBoundStore((state) => state.setLoading)
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
   const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
-  const speed = useBoundStore((state) => state.speed)
+  const verticalSpeed = useBoundStore((state) => state.verticalSpeed)
   const caveRef = useRef<HTMLDivElement | null>(null)
   const speedIntervalRef = useRef<number | null>(null)
 
   const [distance, setDistance] = useState(0)
 
   useEffect(() => {
-    function droneSpeedChange() {
-      if (speed === 0) {
+    function droneVerticalSpeedChange() {
+      if (verticalSpeed === 0) {
         clearInterval(speedIntervalRef.current!)
+        return
       }
-      setDistance((prevDistance) => prevDistance + speed)
+      setDistance(distance + verticalSpeed * 2)
     }
 
-    speedIntervalRef.current = setInterval(droneSpeedChange, 1000)
+    speedIntervalRef.current = setInterval(droneVerticalSpeedChange, 70)
 
     return () => clearInterval(speedIntervalRef.current!)
-  }, [speed, distance])
+  }, [distance, verticalSpeed])
 
   useEffect(() => {
     if (caveRef.current && distance !== 0) {
@@ -96,4 +97,6 @@ const StyledCave = styled.div`
   }
 `
 
-const CaveSVGWrapper = styled.div``
+const CaveSVGWrapper = styled.div`
+  transition: all 0.1s ease-in;
+`
