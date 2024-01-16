@@ -54,7 +54,7 @@ export default function Drone() {
         setStart()
       }
     }
-  }, [horizontalSpeed, caveBlockHeight, setGameFailed, setStart])
+  }, [caveBlockHeight, setGameFailed, setStart])
 
   return (
     <>
