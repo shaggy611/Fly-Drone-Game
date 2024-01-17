@@ -10,6 +10,9 @@ export default function Drone() {
   const setGameFailed = useBoundStore((state) => state.setGameFailed)
   const setStart = useBoundStore((state) => state.setStart)
   const loading = useBoundStore((state) => state.loading)
+  const traveledDistance = useBoundStore((state) => state.traveledDistance)
+  // const setDroneSize = useBoundStore((state) => state.setDroneSize)
+  // const droneSize = useBoundStore((state) => state.droneSize)
   const dronePolygon = useRef<SVGPolygonElement>(null)
   const speedIntervalRef = useRef<number | null>(null)
   const [distance, setDistance] = useState(0)
@@ -38,6 +41,8 @@ export default function Drone() {
     const relativeDronePosTop =
       Math.floor((droneSize!.bottom - caveSize!.top - 11) / caveBlockHeight) + 1
 
+    console.log(relativeDronePosTop)
+
     if (caveAllBlocks.length > 0) {
       const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
         .firstChild as HTMLElement
@@ -54,7 +59,7 @@ export default function Drone() {
         setStart()
       }
     }
-  }, [caveBlockHeight, setGameFailed, setStart])
+  }, [distance, traveledDistance, caveBlockHeight, setGameFailed, setStart])
 
   return (
     <>
