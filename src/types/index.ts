@@ -29,11 +29,11 @@ export interface gameInitializeStore {
 export interface caveStore {
   caveCoords: string[]
   caveSvgPoints: string[]
-  caveSize: DOMRect | undefined
+  caveRef: SVGSVGElement | null
   caveAllBlocks: NodeListOf<Element> | undefined
   setCaveCoords: (payload: string[]) => void
   setCaveSvgPoints: (payload: string[]) => void
-  setCaveSize: (payload: DOMRect) => void
+  setCaveRef: (payload: SVGSVGElement) => void
   setCaveAllBlocks: (payload: NodeListOf<Element>) => void
 }
 
@@ -41,13 +41,13 @@ export interface droneStore {
   horizontalSpeed: number
   verticalSpeed: number
   edgesPoints: number[][]
-  droneSize: DOMRect | undefined
+  droneRef: SVGPolygonElement | null
   traveledDistance: number
   setHorizontalSpeed: (payload: number) => void
   setEdgesPoints: (payload: number[][]) => void
   setVerticalSpeedUp: () => void
   setVerticalSpeedDown: () => void
-  setDroneSize: (payload: DOMRect) => void
+  setDroneRef: (payload: SVGPolygonElement) => void
   setTraveledDistance: (payload: number) => void
 }
 

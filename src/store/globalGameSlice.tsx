@@ -16,7 +16,7 @@ const createGLobalGameSlice: StateCreator<
   gameComplexity: 1,
   loading: false,
   start: false,
-  caveBlockHeight: 5,
+  caveBlockHeight: 10,
   gameFailed: false,
   gameSuccess: false,
   setGameFailed: () => set((state) => ({ gameFailed: !state.gameFailed })),

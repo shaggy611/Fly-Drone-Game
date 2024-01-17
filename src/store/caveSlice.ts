@@ -14,12 +14,12 @@ const createCaveSlice: StateCreator<
 > = (set) => ({
   caveCoords: [],
   caveSvgPoints: [],
-  caveSize: undefined,
+  caveRef: null,
   caveAllBlocks: undefined,
   setCaveCoords: (payload) => set(() => ({ caveCoords: payload })),
   setCaveSvgPoints: (payload) => set(() => ({ caveSvgPoints: payload })),
-  setCaveSize: (payload) => set(() => ({caveSize: payload})),
-  setCaveAllBlocks: (payload) => set(() => ({caveAllBlocks: payload}))
+  setCaveRef: (payload) => set(() => ({ caveRef: payload })),
+  setCaveAllBlocks: (payload) => set(() => ({ caveAllBlocks: payload })),
 })
 
 export default createCaveSlice

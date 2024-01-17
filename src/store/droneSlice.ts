@@ -15,7 +15,7 @@ const createDroneSlice: StateCreator<
   horizontalSpeed: 0,
   verticalSpeed: 0,
   edgesPoints: [],
-  droneSize: undefined,
+  droneRef: null,
   traveledDistance: 0,
   setHorizontalSpeed: (payload) =>
     set((state) => ({ horizontalSpeed: state.horizontalSpeed + payload })),
@@ -32,7 +32,7 @@ const createDroneSlice: StateCreator<
       verticalSpeed:
         state.verticalSpeed > 1 ? state.verticalSpeed - 1 : state.verticalSpeed,
     })),
-  setDroneSize: (payload) => set(() => ({ droneSize: payload })),
+  setDroneRef: (payload) => set(() => ({ droneRef: payload })),
   setTraveledDistance: (payload) => set(() => ({ traveledDistance: payload })),
 })
 
