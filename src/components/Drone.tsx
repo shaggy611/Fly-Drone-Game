@@ -52,8 +52,6 @@ export default function Drone() {
         Math.floor((droneSize!.bottom - caveSize!.top - 11) / caveBlockHeight) +
         1
 
-      console.log(relativeDronePosTop)
-
       if (caveAllBlocks.length > 0) {
         const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
           .firstChild as HTMLElement
