@@ -24,7 +24,6 @@ export default function Drone() {
 
   const setDronePolygonRef = (ref: SVGPolygonElement) => {
     if (ref) {
-      console.log(ref.getBoundingClientRect())
       setDroneRef(ref)
     }
   }

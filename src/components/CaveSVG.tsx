@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useBoundStore } from '../store'
 
 export default function CaveSVG() {
@@ -6,7 +5,6 @@ export default function CaveSVG() {
   const caveBuildBlock = useBoundStore((state) => state.caveBlockHeight)
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
 
-  const caveRef = useBoundStore((state) => state.caveRef)
   const setCaveRef = useBoundStore((state) => state.setCaveRef)
 
   const setCaveReference = (ref: SVGSVGElement) => {
@@ -14,10 +12,6 @@ export default function CaveSVG() {
       setCaveRef(ref)
     }
   }
-
-  useEffect(() => {
-    console.log(caveRef)
-  }, [caveRef])
 
   return (
     <svg
