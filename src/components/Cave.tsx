@@ -14,9 +14,9 @@ function Cave() {
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
   const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
   const verticalSpeed = useBoundStore((state) => state.verticalSpeed)
-  const traveledDistance = useBoundStore((state) => state.traveledDistance)
-  const setTraveledDistance = useBoundStore(
-    (state) => state.setTraveledDistance
+  const verticalTraveledDistance = useBoundStore((state) => state.verticalTraveledDistance)
+  const setVerticalTraveledDistance = useBoundStore(
+    (state) => state.setVerticalTraveledDistance
   )
   const caveRef = useRef<HTMLDivElement | null>(null)
   const speedIntervalRef = useRef<number | null>(null)
@@ -29,19 +29,19 @@ function Cave() {
         clearInterval(speedIntervalRef.current!)
         return
       }
-      setTraveledDistance(traveledDistance + verticalSpeed * 2)
+      setVerticalTraveledDistance(verticalTraveledDistance + verticalSpeed * 2)
     }
 
     speedIntervalRef.current = setInterval(droneVerticalSpeedChange, 70)
 
     return () => clearInterval(speedIntervalRef.current!)
-  }, [traveledDistance, verticalSpeed, setTraveledDistance])
+  }, [verticalTraveledDistance, verticalSpeed, setVerticalTraveledDistance])
 
   useEffect(() => {
-    if (caveRef.current && traveledDistance !== 0) {
-      caveRef.current.style.transform = `translateY(-${traveledDistance}px)`
+    if (caveRef.current && verticalTraveledDistance !== 0) {
+      caveRef.current.style.transform = `translateY(-${verticalTraveledDistance}px)`
     }
-  }, [traveledDistance])
+  }, [verticalTraveledDistance])
 
   useEffect(() => {
     async function initGame() {

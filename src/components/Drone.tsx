@@ -2,25 +2,23 @@ import { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { useBoundStore } from '../store'
 import useDroneSpeed from '../hooks/useDroneSpeed'
-import { useState } from 'react'
+import useDroneCollision from '../hooks/useDroneCollisions'
 
 export default function Drone() {
   const horizontalSpeed = useBoundStore((state) => state.horizontalSpeed)
-  const caveBlockHeight = useBoundStore((state) => state.caveBlockHeight)
-  const setGameFailed = useBoundStore((state) => state.setGameFailed)
-  const setStart = useBoundStore((state) => state.setStart)
+  const horizontalTraveledDistance = useBoundStore(
+    (state) => state.horizontalTraveledDistance
+  )
+  const setHorizontalTraveledDistance = useBoundStore(
+    (state) => state.setHorizontalTraveledDistance
+  )
   const loading = useBoundStore((state) => state.loading)
-  const traveledDistance = useBoundStore((state) => state.traveledDistance)
-  const droneRef = useBoundStore((state) => state.droneRef)
   const setDroneRef = useBoundStore((state) => state.setDroneRef)
-  // const setDroneSize = useBoundStore((state) => state.setDroneSize)
-  // const droneSize = useBoundStore((state) => state.droneSize)
-  // const dronePolygon = useRef<SVGPolygonElement>(null)
-  const caveRef = useBoundStore((state) => state.caveRef)
   const speedIntervalRef = useRef<number | null>(null)
-  const [distance, setDistance] = useState(0)
 
   useDroneSpeed()
+
+  useDroneCollision()
 
   const setDronePolygonRef = (ref: SVGPolygonElement) => {
     if (ref) {
@@ -34,50 +32,18 @@ export default function Drone() {
         clearInterval(speedIntervalRef.current!)
         return
       }
-      setDistance(distance + horizontalSpeed)
+      setHorizontalTraveledDistance(
+        horizontalTraveledDistance + horizontalSpeed
+      )
     }
 
     speedIntervalRef.current = setInterval(droneHorizontalSpeedChange, 70)
 
     return () => clearInterval(speedIntervalRef.current!)
-  }, [distance, horizontalSpeed])
-
-  useEffect(() => {
-    if (droneRef && caveRef) {
-      const caveSize = caveRef.getBoundingClientRect()
-      const caveAllBlocks = caveRef.children
-      const droneSize = droneRef.getBoundingClientRect()
-
-      const relativeDronePosTop =
-        Math.floor((droneSize!.bottom - caveSize!.top - 11) / caveBlockHeight) +
-        1
-
-      if (caveAllBlocks.length > 0) {
-        const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
-          .firstChild as HTMLElement
-        const caveCurrentRightBlock = caveAllBlocks[relativeDronePosTop]
-          .lastChild as HTMLElement
-
-        const horizontColision =
-          droneSize!.left <=
-            caveCurrentLeftBlock!.getBoundingClientRect().right ||
-          droneSize!.right >=
-            caveCurrentRightBlock!.getBoundingClientRect().left
-
-        if (horizontColision) {
-          setGameFailed()
-          setStart()
-        }
-      }
-    }
   }, [
-    distance,
-    droneRef,
-    caveRef,
-    traveledDistance,
-    caveBlockHeight,
-    setGameFailed,
-    setStart,
+    horizontalTraveledDistance,
+    horizontalSpeed,
+    setHorizontalTraveledDistance,
   ])
 
   return (
@@ -87,8 +53,7 @@ export default function Drone() {
         ''
       ) : (
         <StyledDrone
-          dronePosition={horizontalSpeed}
-          style={{ transform: `translateX(${distance}px)` }}>
+          style={{ transform: `translateX(${horizontalTraveledDistance}px)` }}>
           <svg width='20' height='11' xmlns='http://www.w3.org/2000/svg'>
             <polygon ref={setDronePolygonRef} points='0,0 20,0 10,11' />
           </svg>
@@ -98,9 +63,7 @@ export default function Drone() {
   )
 }
 
-const StyledDrone = styled.div<{
-  dronePosition: number
-}>`
+const StyledDrone = styled.div`
   position: absolute;
   left: 50%;
   top: 30px;

@@ -42,13 +42,15 @@ export interface droneStore {
   verticalSpeed: number
   edgesPoints: number[][]
   droneRef: SVGPolygonElement | null
-  traveledDistance: number
+  verticalTraveledDistance: number
+  horizontalTraveledDistance: number
   setHorizontalSpeed: (payload: number) => void
   setEdgesPoints: (payload: number[][]) => void
   setVerticalSpeedUp: () => void
   setVerticalSpeedDown: () => void
   setDroneRef: (payload: SVGPolygonElement) => void
-  setTraveledDistance: (payload: number) => void
+  setVerticalTraveledDistance: (payload: number) => void
+  setHorizontalTraveledDistance: (payload: number) => void
 }
 
 export type changeDroneSpeed = () => void
