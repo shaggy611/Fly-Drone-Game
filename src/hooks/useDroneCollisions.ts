@@ -29,6 +29,11 @@ const useDroneCollision = () => {
           .firstChild as HTMLElement
         const caveCurrentRightBlock = caveAllBlocks[relativeDronePosTop]
           .lastChild as HTMLElement
+        const caveLastBlock = caveAllBlocks[caveAllBlocks.length - 1]
+          .firstChild as HTMLElement
+        const lastCavePoint = Math.floor(
+          caveLastBlock.getBoundingClientRect().top
+        )
 
         const horizontColision =
           droneSize!.left <=
@@ -36,7 +41,14 @@ const useDroneCollision = () => {
           droneSize!.right >=
             caveCurrentRightBlock!.getBoundingClientRect().left
 
+        // Checking when the Drone collided with Cave walls
         if (horizontColision) {
+          setGameFailed()
+          setStart()
+        }
+
+        // Checking when the drone has successfully reached the end of the cave
+        if (lastCavePoint <= droneSize.bottom) {
           setGameFailed()
           setStart()
         }

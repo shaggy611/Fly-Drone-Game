@@ -14,14 +14,14 @@ function Cave() {
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
   const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
   const verticalSpeed = useBoundStore((state) => state.verticalSpeed)
-  const verticalTraveledDistance = useBoundStore((state) => state.verticalTraveledDistance)
+  const verticalTraveledDistance = useBoundStore(
+    (state) => state.verticalTraveledDistance
+  )
   const setVerticalTraveledDistance = useBoundStore(
     (state) => state.setVerticalTraveledDistance
   )
   const caveRef = useRef<HTMLDivElement | null>(null)
   const speedIntervalRef = useRef<number | null>(null)
-
-  // const [distance, setDistance] = useState(0)
 
   useEffect(() => {
     function droneVerticalSpeedChange() {
