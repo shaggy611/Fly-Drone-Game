@@ -6,12 +6,7 @@ import {
 } from './../types/index'
 import { StateCreator } from 'zustand'
 
-const createGLobalGameSlice: StateCreator<
-  caveStore & gameInitializeStore & globalGameStore & droneStore,
-  [],
-  [],
-  globalGameStore
-> = (set) => ({
+const initialGLobalGameState = {
   playerName: '',
   gameComplexity: 1,
   loading: false,
@@ -19,6 +14,16 @@ const createGLobalGameSlice: StateCreator<
   caveBlockHeight: 10,
   gameFailed: false,
   gameSuccess: false,
+}
+
+const createGLobalGameSlice: StateCreator<
+  caveStore & gameInitializeStore & globalGameStore & droneStore,
+  [],
+  [],
+  globalGameStore
+> = (set) => ({
+  ...initialGLobalGameState,
+  
   setGameFailed: () => set((state) => ({ gameFailed: !state.gameFailed })),
   setGameSuccess: () => set((state) => ({ gameFailed: !state.gameSuccess })),
   setLoading: () => set((state) => ({ loading: !state.loading })),
