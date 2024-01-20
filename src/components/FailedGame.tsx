@@ -7,7 +7,7 @@ export default function FailedGame() {
   const setId = useBoundStore((state) => state.setId)
   const setToken = useBoundStore((state) => state.setToken)
   const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
-  const setPosition = useBoundStore((state) => state.setPosition)
+  //const setPosition = useBoundStore((state) => state.setPosition)
 
   return (
     <StyledFailedGame>
@@ -28,7 +28,7 @@ export default function FailedGame() {
           setId('')
           setToken('')
           setCaveCoords([])
-          setPosition([0, 0])
+          //setPosition([0, 0])
         }}>
         START AGAIN
       </Button>
