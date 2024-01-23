@@ -1,6 +1,7 @@
-import { Button, Typography } from '@mui/material'
+import { Button } from '@mui/material'
 import styled from 'styled-components'
 import { resetAllSlices } from '../store'
+import gameOverImage from '../assets/game_over.png'
 
 export default function FailedGame() {
   // const setGameFailed = useBoundStore((state) => state.setGameFailed)
@@ -10,18 +11,12 @@ export default function FailedGame() {
 
   return (
     <StyledFailedGame>
-      <Typography
-        sx={{ fontSize: '1.5rem', width: '100%' }}
-        p={0}
-        align='center'
-        gutterBottom>
-        Failed! The drone collided with the wall
-      </Typography>
+      <StyledImage src={gameOverImage} />
 
       <Button
         variant='contained'
         size='small'
-        sx={{ width: '100%' }}
+        sx={{ width: '50%' }}
         onClick={() => {
           resetAllSlices()
           // setGameFailed()
@@ -41,4 +36,9 @@ const StyledFailedGame = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`
+
+const StyledImage = styled.img`
+  max-width: 300px;
+  width: 100%;
 `
