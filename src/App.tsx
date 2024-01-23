@@ -62,9 +62,9 @@ const StyledButton = styled(Button)`
   max-width: 110px;
   width: 100%;
   position: absolute !important;
-  top: 95%;
-  left: 92%;
-  transform: translate(-50%, 0%);
+  bottom: 12px;
+  right: 10px;
+
 `
 
 const StyledLinearProgress = styled(LinearProgress)`
