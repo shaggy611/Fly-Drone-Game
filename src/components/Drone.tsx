@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useBoundStore } from '../store'
 import useDroneSpeed from '../hooks/useDroneSpeed'
 import useDroneCollision from '../hooks/useDroneCollisions'
+import droneIcon from '../assets/drone-ico-1.png'
 
 export default function Drone() {
   const horizontalSpeed = useBoundStore((state) => state.horizontalSpeed)
@@ -20,12 +21,18 @@ export default function Drone() {
 
   useDroneCollision()
 
-  const setDronePolygonRef = (ref: SVGPolygonElement) => {
+  // const setDronePolygonRef = (ref: SVGPolygonElement) => {
+  //   if (ref) {
+  //     setDroneRef(ref)
+  //   }
+  // }
+
+  const setDronePolygonRef = (ref: HTMLImageElement) => {
     if (ref) {
       setDroneRef(ref)
     }
   }
-
+  
   useEffect(() => {
     function droneHorizontalSpeedChange() {
       if (horizontalSpeed === 0) {
@@ -54,9 +61,15 @@ export default function Drone() {
       ) : (
         <StyledDrone
           style={{ transform: `translateX(${horizontalTraveledDistance}px)` }}>
-          <svg width='20' height='11' xmlns='http://www.w3.org/2000/svg'>
+          {/* <svg width='20' height='11' xmlns='http://www.w3.org/2000/svg'>
             <polygon ref={setDronePolygonRef} points='0,0 20,0 10,11' />
-          </svg>
+          </svg> */}
+          <img
+            src={droneIcon}
+            width='26'
+            height='17'
+            ref={setDronePolygonRef}
+          />
         </StyledDrone>
       )}
     </>

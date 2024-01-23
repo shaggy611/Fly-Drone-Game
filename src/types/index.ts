@@ -48,7 +48,8 @@ export interface droneStore {
   setEdgesPoints: (payload: number[][]) => void
   setVerticalSpeedUp: () => void
   setVerticalSpeedDown: () => void
-  setDroneRef: (payload: SVGPolygonElement) => void
+  // setDroneRef: (payload: SVGPolygonElement) => void
+  setDroneRef: (payload: HTMLImageElement) => void
   setVerticalTraveledDistance: (payload: number) => void
   setHorizontalTraveledDistance: (payload: number) => void
 }
