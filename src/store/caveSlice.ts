@@ -5,6 +5,7 @@ import {
   droneStore,
 } from './../types/index'
 import { StateCreator } from 'zustand'
+import { sliceResetFns } from './index'
 
 const initialCaveState = {
   caveCoords: [],
@@ -18,12 +19,16 @@ const createCaveSlice: StateCreator<
   [],
   [],
   caveStore
-> = (set) => ({
-  ...initialCaveState,
-  setCaveCoords: (payload) => set(() => ({ caveCoords: payload })),
-  setCaveSvgPoints: (payload) => set(() => ({ caveSvgPoints: payload })),
-  setCaveRef: (payload) => set(() => ({ caveRef: payload })),
-  setCaveAllBlocks: (payload) => set(() => ({ caveAllBlocks: payload })),
-})
+> = (set) => {
+  sliceResetFns.add(() => set(initialCaveState))
+
+  return {
+    ...initialCaveState,
+    setCaveCoords: (payload) => set(() => ({ caveCoords: payload })),
+    setCaveSvgPoints: (payload) => set(() => ({ caveSvgPoints: payload })),
+    setCaveRef: (payload) => set(() => ({ caveRef: payload })),
+    setCaveAllBlocks: (payload) => set(() => ({ caveAllBlocks: payload })),
+  }
+}
 
 export default createCaveSlice

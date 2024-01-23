@@ -1,3 +1,4 @@
+import { sliceResetFns } from '.'
 import {
   gameInitializeStore,
   caveStore,
@@ -21,15 +22,19 @@ const createGLobalGameSlice: StateCreator<
   [],
   [],
   globalGameStore
-> = (set) => ({
-  ...initialGLobalGameState,
-  
-  setGameFailed: () => set((state) => ({ gameFailed: !state.gameFailed })),
-  setGameSuccess: () => set((state) => ({ gameFailed: !state.gameSuccess })),
-  setLoading: () => set((state) => ({ loading: !state.loading })),
-  setStart: () => set((state) => ({ start: !state.start })),
-  setGameComplexity: (payload) => set(() => ({ gameComplexity: payload })),
-  setPlayerName: (payload) => set(() => ({ playerName: payload })),
-})
+> = (set) => {
+  sliceResetFns.add(() => set(initialGLobalGameState))
+
+  return {
+    ...initialGLobalGameState,
+
+    setGameFailed: () => set((state) => ({ gameFailed: !state.gameFailed })),
+    setGameSuccess: () => set((state) => ({ gameFailed: !state.gameSuccess })),
+    setLoading: () => set((state) => ({ loading: !state.loading })),
+    setStart: () => set((state) => ({ start: !state.start })),
+    setGameComplexity: (payload) => set(() => ({ gameComplexity: payload })),
+    setPlayerName: (payload) => set(() => ({ playerName: payload })),
+  }
+}
 
 export default createGLobalGameSlice

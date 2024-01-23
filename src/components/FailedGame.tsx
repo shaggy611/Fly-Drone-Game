@@ -1,13 +1,16 @@
 import { Button, Typography } from '@mui/material'
 import styled from 'styled-components'
 import { useBoundStore } from '../store'
+import { resetAllSlices } from '../store'
 
 export default function FailedGame() {
-  const setGameFailed = useBoundStore((state) => state.setGameFailed)
-  const setId = useBoundStore((state) => state.setId)
-  const setToken = useBoundStore((state) => state.setToken)
-  const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
-  //const setPosition = useBoundStore((state) => state.setPosition)
+  // const setGameFailed = useBoundStore((state) => state.setGameFailed)
+  // const setId = useBoundStore((state) => state.setId)
+  // const setToken = useBoundStore((state) => state.setToken)
+  // const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
+  const droneRef = useBoundStore((state) => state.droneRef)
+
+  console.log(droneRef)
 
   return (
     <StyledFailedGame>
@@ -24,10 +27,11 @@ export default function FailedGame() {
         size='small'
         sx={{ width: '100%' }}
         onClick={() => {
-          setGameFailed()
-          setId('')
-          setToken('')
-          setCaveCoords([])
+          // setGameFailed()
+          // setId('')
+          // setToken('')
+          // setCaveCoords([])
+          resetAllSlices()
           //setPosition([0, 0])
         }}>
         START AGAIN

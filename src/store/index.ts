@@ -10,6 +10,14 @@ import {
   droneStore,
 } from '../types'
 
+export const sliceResetFns = new Set<() => void>()
+
+export const resetAllSlices = () => {
+  sliceResetFns.forEach((resetFn) => {
+    resetFn()
+  })
+}
+
 export const useBoundStore = create<
   globalGameStore & caveStore & gameInitializeStore & droneStore
 >()((...a) => ({

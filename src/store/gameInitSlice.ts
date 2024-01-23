@@ -5,6 +5,7 @@ import {
   droneStore,
 } from '../types'
 import { StateCreator } from 'zustand'
+import { sliceResetFns } from './index';
 
 const initialGameInitState = {
   token: '',
@@ -16,10 +17,14 @@ const createGameInitSlice: StateCreator<
   [],
   [],
   gameInitializeStore
-> = (set) => ({
-  ...initialGameInitState,
-  setToken: (param: string) => set(() => ({ token: param })),
-  setId: (param: string) => set(() => ({ id: param })),
-})
+> = (set) => {
+  sliceResetFns.add(() => set(initialGameInitState))
+
+  return {
+    ...initialGameInitState,
+    setToken: (param: string) => set(() => ({ token: param })),
+    setId: (param: string) => set(() => ({ id: param })),
+  }
+}
 
 export default createGameInitSlice
