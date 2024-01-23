@@ -1,6 +1,6 @@
 import { Button, Container, Divider } from '@mui/material'
 import Typography from '@mui/material/Typography'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import ScoreTable from './ScoreTable'
 import { useBoundStore } from '../store'
 import ComplexitySlider from './ComplexitySlider'
@@ -74,6 +74,17 @@ function WelcomeBoard() {
 
 export default WelcomeBoard
 
+const appearingBoard = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
 const StyledContainer = styled(Container)`
   width: 100%;
   padding: 20px;
@@ -90,4 +101,5 @@ const StyledWelcomeBoard = styled.div`
   max-width: 500px;
   width: 100%;
   height: 100%;
+  animation: ${appearingBoard} 0.4s ease;
 `

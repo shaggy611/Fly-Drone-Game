@@ -1,5 +1,5 @@
 import { Button } from '@mui/material'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { resetAllStore } from '../store'
 import gameOverImage from '../assets/game_over.png'
 
@@ -31,6 +31,16 @@ export default function FailedGame() {
   )
 }
 
+const appearing = keyframes`
+    10% { transform:translateY(0%); opacity: 0; }
+    30% { transform:translateY(-15%); }
+    50% { transform:translateY(0%); }
+    60% { transform:translateY(-7%); }
+    80% { transform:translateY(0%); }
+    98% { transform:translateY(-3%); }
+    100% { transform:translateY(0); opacity: 1; }
+`
+
 const StyledFailedGame = styled.div`
   position: absolute;
   top: 50%;
@@ -41,4 +51,5 @@ const StyledFailedGame = styled.div`
 const StyledImage = styled.img`
   max-width: 300px;
   width: 100%;
+  animation: ${appearing} 0.5s ease-in;
 `
