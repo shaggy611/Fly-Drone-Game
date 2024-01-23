@@ -12,7 +12,7 @@ import {
 
 export const sliceResetFns = new Set<() => void>()
 
-export const resetAllSlices = () => {
+export const resetAllStore = () => {
   sliceResetFns.forEach((resetFn) => {
     resetFn()
   })

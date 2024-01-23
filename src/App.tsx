@@ -7,16 +7,17 @@ import Drone from './components/Drone'
 import styled from 'styled-components'
 import FailedGame from './components/FailedGame'
 import { LinearProgress, Typography } from '@mui/material'
+import { resetAllStore } from './store'
 
 function App() {
   const start = useBoundStore((state) => state.start)
-  const setStart = useBoundStore((state) => state.setStart)
-  const setId = useBoundStore((state) => state.setId)
-  const gameFailed = useBoundStore((state) => state.gameFailed)
-  // const gameSuccess = useBoundStore((state) => state.gameSuccess)
-  const setToken = useBoundStore((state) => state.setToken)
-  const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
   const loading = useBoundStore((state) => state.loading)
+  const gameFailed = useBoundStore((state) => state.gameFailed)
+  // const setStart = useBoundStore((state) => state.setStart)
+  // const setId = useBoundStore((state) => state.setId)
+  // const gameSuccess = useBoundStore((state) => state.gameSuccess)
+  // const setToken = useBoundStore((state) => state.setToken)
+  // const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
 
   return (
     <>
@@ -41,11 +42,9 @@ function App() {
       <StyledButton
         variant='contained'
         size='small'
+        disabled={!start || loading}
         onClick={() => {
-          setStart()
-          setId('')
-          setToken('')
-          setCaveCoords([])
+          resetAllStore()
         }}>
         RESET GAME
       </StyledButton>
@@ -60,11 +59,11 @@ const CaveWrapper = styled.div`
 `
 
 const StyledButton = styled(Button)`
-  max-width: 200px;
+  max-width: 110px;
   width: 100%;
   position: absolute !important;
   top: 95%;
-  left: 50%;
+  left: 92%;
   transform: translate(-50%, 0%);
 `
 

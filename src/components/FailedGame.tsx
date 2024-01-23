@@ -1,6 +1,6 @@
 import { Button } from '@mui/material'
 import styled from 'styled-components'
-import { resetAllSlices } from '../store'
+import { resetAllStore } from '../store'
 import gameOverImage from '../assets/game_over.png'
 
 export default function FailedGame() {
@@ -18,7 +18,7 @@ export default function FailedGame() {
         size='small'
         sx={{ width: '50%' }}
         onClick={() => {
-          resetAllSlices()
+          resetAllStore()
           // setGameFailed()
           // setId('')
           // setToken('')
