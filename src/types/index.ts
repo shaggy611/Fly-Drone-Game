@@ -7,6 +7,7 @@ export interface globalGameStore {
   playerName: string
   gameComplexity: number
   loading: boolean
+  gameDataLoaded: boolean
   start: boolean
   caveBlockHeight: number
   gameFailed: boolean
@@ -17,6 +18,7 @@ export interface globalGameStore {
   setGameSuccess: () => void
   setPlayerName: (payload: string) => void
   setGameComplexity: (payload: number) => void
+  setGameDataLoaded: () => void
 }
 
 export interface gameInitializeStore {

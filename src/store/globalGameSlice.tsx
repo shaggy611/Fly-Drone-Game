@@ -15,6 +15,7 @@ const initialGLobalGameState = {
   caveBlockHeight: 10,
   gameFailed: false,
   gameSuccess: false,
+  gameDataLoaded: false
 }
 
 const createGLobalGameSlice: StateCreator<
@@ -34,6 +35,7 @@ const createGLobalGameSlice: StateCreator<
     setStart: () => set((state) => ({ start: !state.start })),
     setGameComplexity: (payload) => set(() => ({ gameComplexity: payload })),
     setPlayerName: (payload) => set(() => ({ playerName: payload })),
+    setGameDataLoaded: () => set((state) => ({gameDataLoaded: !state.gameDataLoaded}))
   }
 }
 
