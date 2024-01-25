@@ -8,19 +8,16 @@ import styled from 'styled-components'
 import FailedGame from './components/FailedGame'
 import { LinearProgress, Typography } from '@mui/material'
 import { resetAllStore } from './store'
+import GaugesBlock from './components/GaugesBlock'
 
 function App() {
   const start = useBoundStore((state) => state.start)
   const loading = useBoundStore((state) => state.loading)
   const gameFailed = useBoundStore((state) => state.gameFailed)
-  // const setStart = useBoundStore((state) => state.setStart)
-  // const setId = useBoundStore((state) => state.setId)
-  // const gameSuccess = useBoundStore((state) => state.gameSuccess)
-  // const setToken = useBoundStore((state) => state.setToken)
-  // const setCaveCoords = useBoundStore((state) => state.setCaveCoords)
 
   return (
     <>
+      <GaugesBlock />
       {loading ? (
         <>
           <StyledLinearProgress color='success' />
@@ -64,7 +61,6 @@ const StyledButton = styled(Button)`
   position: absolute !important;
   bottom: 12px;
   right: 10px;
-
 `
 
 const StyledLinearProgress = styled(LinearProgress)`

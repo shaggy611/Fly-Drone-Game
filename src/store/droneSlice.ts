@@ -7,14 +7,6 @@ import {
 import { StateCreator } from 'zustand'
 import { sliceResetFns } from './index'
 
-// const sliceResetFns = new Set<() => void>()
-
-// export const resetAllSlices = () => {
-//   sliceResetFns.forEach((resetFn) => {
-//     resetFn()
-//   })
-// }
-
 const initialDroneState = {
   horizontalSpeed: 0,
   verticalSpeed: 0,
