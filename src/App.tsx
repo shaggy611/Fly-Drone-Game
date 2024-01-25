@@ -17,7 +17,15 @@ function App() {
 
   return (
     <>
-      <GaugesBlock />
+      {start ? (
+        <CaveWrapper>
+          <Cave />
+          <Drone />
+        </CaveWrapper>
+      ) : (
+        <>{gameFailed ? <FailedGame /> : <WelcomeBoard />}</>
+      )}
+
       {loading ? (
         <>
           <StyledLinearProgress color='success' />
@@ -27,14 +35,7 @@ function App() {
         ''
       )}
 
-      {start ? (
-        <CaveWrapper>
-          <Cave />
-          <Drone />
-        </CaveWrapper>
-      ) : (
-        <>{gameFailed ? <FailedGame /> : <WelcomeBoard />}</>
-      )}
+      <GaugesBlock />
 
       <StyledButton
         variant='contained'

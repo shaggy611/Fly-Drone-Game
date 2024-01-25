@@ -4,6 +4,7 @@ import { useBoundStore } from '../store'
 function GaugesBlock() {
   const horizontalSpeed = useBoundStore((state) => state.horizontalSpeed)
   const verticalSpeed = useBoundStore((state) => state.verticalSpeed)
+  const gameDataLoaded = useBoundStore((state) => state.gameDataLoaded)
 
   const verticalGauge = (verticalSpeed * 100) / 6
   const horizontalGauge =
@@ -16,29 +17,35 @@ function GaugesBlock() {
   console.log(horizontalSpeed)
 
   return (
-    <StyledWrapper>
-      <span className='gauge-subtext'>Vertical Speed</span>
-      <div className='gauge-wrapper'>
-        <div className='gauge'>
-          <span
-            className='gauge-indicator'
-            style={{ left: `${verticalGauge}%` }}></span>
-        </div>
+    <>
+      {gameDataLoaded ? (
+        <StyledWrapper>
+          <span className='gauge-subtext'>Vertical Speed</span>
+          <div className='gauge-wrapper'>
+            <div className='gauge'>
+              <span
+                className='gauge-indicator'
+                style={{ left: `${verticalGauge}%` }}></span>
+            </div>
 
-        <p className='indication-text'>{verticalSpeed}</p>
-      </div>
+            <p className='indication-text'>{verticalSpeed}</p>
+          </div>
 
-      <span className='gauge-subtext'>Horizontal Speed</span>
-      <div className='gauge-wrapper'>
-        <div className='gauge horizontal'>
-          <span
-            className='gauge-indicator'
-            style={{ left: `${horizontalGauge}%` }}></span>
-        </div>
+          <span className='gauge-subtext'>Horizontal Speed</span>
+          <div className='gauge-wrapper'>
+            <div className='gauge horizontal'>
+              <span
+                className='gauge-indicator'
+                style={{ left: `${horizontalGauge}%` }}></span>
+            </div>
 
-        <p className='indication-text'>{horizontalSpeed}</p>
-      </div>
-    </StyledWrapper>
+            <p className='indication-text'>{horizontalSpeed}</p>
+          </div>
+        </StyledWrapper>
+      ) : (
+        ''
+      )}
+    </>
   )
 }
 

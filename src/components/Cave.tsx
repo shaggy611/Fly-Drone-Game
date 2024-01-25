@@ -22,6 +22,7 @@ function Cave() {
   )
   const caveRef = useRef<HTMLDivElement | null>(null)
   const speedIntervalRef = useRef<number | null>(null)
+  const setGameDataLoaded = useBoundStore((state) => state.setGameDataLoaded)
 
   useEffect(() => {
     function droneVerticalSpeedChange() {
@@ -66,6 +67,7 @@ function Cave() {
       const stringSVG = prepareCoordsForSVG(cords)
       setCaveSvgPoints(stringSVG)
       setLoading()
+      setGameDataLoaded()
     }
   }, [cords, setCaveSvgPoints, setLoading])
 
