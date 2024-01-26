@@ -6,11 +6,12 @@ import { Button } from '@mui/material'
 import Drone from './components/Drone'
 import styled from 'styled-components'
 import FailedGame from './components/FailedGame'
-import { LinearProgress } from '@mui/material'
+// import { LinearProgress } from '@mui/material'
 import { resetAllStore } from './store'
 import GaugesBlock from './components/GaugesBlock'
 import WinGame from './components/WinGame'
-import loadingImage from './assets/loading.png'
+// import loadingImage from './assets/loading.png'
+import Loader from './components/Loader'
 
 function App() {
   const start = useBoundStore((state) => state.start)
@@ -31,8 +32,9 @@ function App() {
 
       {loading ? (
         <>
-          <StyledLinearProgress color='success' />
-          <StyledImage src={loadingImage} />
+          {/* <StyledLinearProgress color='success' />
+          <StyledImage src={loadingImage} /> */}
+          <Loader />
         </>
       ) : (
         ''
@@ -73,19 +75,19 @@ const StyledButton = styled(Button)`
   right: 10px;
 `
 
-const StyledLinearProgress = styled(LinearProgress)`
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 7px !important;
-`
+// const StyledLinearProgress = styled(LinearProgress)`
+//   position: absolute !important;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 7px !important;
+// `
 
-const StyledImage = styled.img`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 300px;
-`
+// const StyledImage = styled.img`
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   width: 100%;
+//   max-width: 300px;
+// `
