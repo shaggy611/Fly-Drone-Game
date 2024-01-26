@@ -35,7 +35,8 @@ const createGLobalGameSlice: StateCreator<
     setStart: () => set((state) => ({ start: !state.start })),
     setGameComplexity: (payload) => set(() => ({ gameComplexity: payload })),
     setPlayerName: (payload) => set(() => ({ playerName: payload })),
-    setGameDataLoaded: () => set((state) => ({gameDataLoaded: !state.gameDataLoaded}))
+    setGameDataLoaded: () =>
+      set((state) => ({ gameDataLoaded: !state.gameDataLoaded })),
   }
 }
 
