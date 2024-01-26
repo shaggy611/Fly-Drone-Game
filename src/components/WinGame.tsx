@@ -1,16 +1,16 @@
 import { Button } from '@mui/material'
 import styled, { keyframes } from 'styled-components'
 import { resetAllStore, useBoundStore } from '../store'
-import gameOverImage from '../assets/gameover.png'
+import winGameImage from '../assets/win.png'
 
-export default function FailedGame() {
-  const gameFailed = useBoundStore((state) => state.gameFailed)
+export default function WinGame() {
+  const gameSuccess = useBoundStore((state) => state.gameSuccess)
 
   return (
     <>
-      {gameFailed ? (
-        <StyledFailedGame>
-          <StyledImage src={gameOverImage} />
+      {gameSuccess ? (
+        <StyledWinGame>
+          <StyledImage src={winGameImage} />
 
           <Button
             variant='contained'
@@ -19,9 +19,9 @@ export default function FailedGame() {
             onClick={() => {
               resetAllStore()
             }}>
-            START AGAIN
+            NEW GAME
           </Button>
-        </StyledFailedGame>
+        </StyledWinGame>
       ) : (
         ''
       )}
@@ -39,7 +39,7 @@ const appearing = keyframes`
     100% { transform:translateY(0); opacity: 1; }
 `
 
-const StyledFailedGame = styled.div`
+const StyledWinGame = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;

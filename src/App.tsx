@@ -6,35 +6,43 @@ import { Button } from '@mui/material'
 import Drone from './components/Drone'
 import styled from 'styled-components'
 import FailedGame from './components/FailedGame'
-import { LinearProgress, Typography } from '@mui/material'
+import { LinearProgress } from '@mui/material'
 import { resetAllStore } from './store'
 import GaugesBlock from './components/GaugesBlock'
+import WinGame from './components/WinGame'
+import loadingImage from './assets/loading.png'
 
 function App() {
   const start = useBoundStore((state) => state.start)
   const loading = useBoundStore((state) => state.loading)
   const gameFailed = useBoundStore((state) => state.gameFailed)
+  const gameSuccess = useBoundStore((state) => state.gameSuccess)
 
   return (
     <>
-      <WelcomeBoard />
-      {start ? (
+      {start && !gameSuccess && !gameFailed ? (
         <CaveWrapper>
           <Cave />
           <Drone />
         </CaveWrapper>
       ) : (
-        <>{gameFailed ? <FailedGame /> : ''}</>
+        ''
       )}
 
       {loading ? (
         <>
           <StyledLinearProgress color='success' />
-          <StyledTypography variant='h4'>Loading game...</StyledTypography>
+          <StyledImage src={loadingImage} />
         </>
       ) : (
         ''
       )}
+
+      <WelcomeBoard />
+
+      <FailedGame />
+
+      <WinGame />
 
       <GaugesBlock />
 
@@ -73,10 +81,11 @@ const StyledLinearProgress = styled(LinearProgress)`
   height: 7px !important;
 `
 
-const StyledTypography = styled(Typography)`
+const StyledImage = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100%;
+  max-width: 300px;
 `

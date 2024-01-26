@@ -15,7 +15,7 @@ const initialGLobalGameState = {
   caveBlockHeight: 10,
   gameFailed: false,
   gameSuccess: false,
-  gameDataLoaded: false
+  gameDataLoaded: false,
 }
 
 const createGLobalGameSlice: StateCreator<

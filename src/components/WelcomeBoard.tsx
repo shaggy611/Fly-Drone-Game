@@ -13,6 +13,8 @@ function WelcomeBoard() {
   const setPlayerName = useBoundStore((state) => state.setPlayerName)
   const gameDataLoaded = useBoundStore((state) => state.gameDataLoaded)
   const loading = useBoundStore((state) => state.loading)
+  const gameFailed = useBoundStore((state) => state.gameFailed)
+  const gameSuccess = useBoundStore((state) => state.gameSuccess)
 
   function startGame() {
     setStart()
@@ -20,7 +22,7 @@ function WelcomeBoard() {
 
   return (
     <>
-      {!gameDataLoaded && !loading ? (
+      {!gameDataLoaded && !loading && !gameFailed && !gameSuccess ? (
         <StyledWelcomeBoard>
           <StyledContainer
             sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
