@@ -51,6 +51,9 @@ function WelcomeBoard() {
             maxWidth='sm'>
             <Box component='form' noValidate autoComplete='off'>
               <TextField
+                sx={{
+                  input: { color: (theme) => theme.palette.text.secondary },
+                }}
                 id='outlined-basic'
                 label='Write your name'
                 variant='outlined'

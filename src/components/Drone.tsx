@@ -79,7 +79,7 @@ export default function Drone() {
 const StyledDrone = styled.div`
   position: absolute;
   left: 50%;
-  top: 30px;
+  top: 5px;
   transition: all 0.1s ease-in;
 
   & {

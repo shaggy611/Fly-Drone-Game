@@ -99,11 +99,12 @@ const StyledWrapper = styled.div`
   & .gauge-indicator {
     display: block;
     position: relative;
-    background-color: #ff5722;
+    background-color: #F15412;
     width: 5.5%;
     height: 65%;
     border-radius: 100%;
     transition: all 0.5s ease-in;
+    border: 1px solid darkblue;
   }
 
   & .horizontal {
