@@ -30,7 +30,7 @@ const createGLobalGameSlice: StateCreator<
     ...initialGLobalGameState,
 
     setGameFailed: () => set((state) => ({ gameFailed: !state.gameFailed })),
-    setGameSuccess: () => set((state) => ({ gameFailed: !state.gameSuccess })),
+    setGameSuccess: () => set((state) => ({ gameSuccess: !state.gameSuccess })),
     setLoading: () => set((state) => ({ loading: !state.loading })),
     setStart: () => set((state) => ({ start: !state.start })),
     setGameComplexity: (payload) => set(() => ({ gameComplexity: payload })),

@@ -9,6 +9,7 @@ const useDroneCollision = () => {
   const droneRef = useBoundStore((state) => state.droneRef)
   const caveBlockHeight = useBoundStore((state) => state.caveBlockHeight)
   const setGameFailed = useBoundStore((state) => state.setGameFailed)
+  const setGameSuccess = useBoundStore((state) => state.setGameSuccess)
   const setStart = useBoundStore((state) => state.setStart)
   const horizontalTraveledDistance = useBoundStore(
     (state) => state.horizontalTraveledDistance
@@ -44,13 +45,11 @@ const useDroneCollision = () => {
         // Checking when the Drone collided with Cave walls
         if (horizontColision) {
           setGameFailed()
-          setStart()
         }
 
         // Checking when the drone has successfully reached the end of the cave
         if (lastCavePoint <= droneSize.bottom) {
-          setGameFailed()
-          setStart()
+          setGameSuccess()
         }
       }
     }
