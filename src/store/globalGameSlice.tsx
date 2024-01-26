@@ -10,7 +10,7 @@ import { StateCreator } from 'zustand'
 const initialGLobalGameState = {
   playerName: '',
   gameComplexity: 1,
-  loading: true,
+  loading: false,
   start: false,
   caveBlockHeight: 10,
   gameFailed: false,
