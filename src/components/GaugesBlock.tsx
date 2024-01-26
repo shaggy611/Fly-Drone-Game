@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { useBoundStore } from '../store'
 
 function GaugesBlock() {
@@ -51,6 +51,16 @@ function GaugesBlock() {
 
 export default GaugesBlock
 
+const appearing = keyframes`
+    10% { transform:translateX(0%); opacity: 0; }
+    30% { transform:translateX(-25%); }
+    50% { transform:translateX(0%); }
+    60% { transform:translateX(-7%); }
+    80% { transform:translateX(0%); }
+    98% { transform:translateX(-3%); }
+    100% { transform:translateX(0); opacity: 1; }
+`
+
 const StyledWrapper = styled.div`
   position: absolute;
   top: 12px;
@@ -58,6 +68,7 @@ const StyledWrapper = styled.div`
   max-width: 230px;
   max-height: 150px;
   width: 100%;
+  animation: ${appearing} 0.5s ease-in;
 
   & .gauge-wrapper {
     display: flex;
