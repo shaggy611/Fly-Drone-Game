@@ -17,13 +17,14 @@ function App() {
 
   return (
     <>
+      <WelcomeBoard />
       {start ? (
         <CaveWrapper>
           <Cave />
           <Drone />
         </CaveWrapper>
       ) : (
-        <>{gameFailed ? <FailedGame /> : <WelcomeBoard />}</>
+        <>{gameFailed ? <FailedGame /> : ''}</>
       )}
 
       {loading ? (

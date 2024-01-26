@@ -11,64 +11,72 @@ function WelcomeBoard() {
   const setStart = useBoundStore((state) => state.setStart)
   const playerName = useBoundStore((state) => state.playerName)
   const setPlayerName = useBoundStore((state) => state.setPlayerName)
+  const gameDataLoaded = useBoundStore((state) => state.gameDataLoaded)
+  const loading = useBoundStore((state) => state.loading)
 
   function startGame() {
     setStart()
   }
 
   return (
-    <StyledWelcomeBoard>
-      <StyledContainer
-        sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
-        maxWidth='sm'>
-        <Typography
-          sx={{ fontSize: '1.5rem' }}
-          p={0}
-          align='center'
-          gutterBottom>
-          Through the Cave
-        </Typography>
+    <>
+      {!gameDataLoaded && !loading ? (
+        <StyledWelcomeBoard>
+          <StyledContainer
+            sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
+            maxWidth='sm'>
+            <Typography
+              sx={{ fontSize: '1.5rem' }}
+              p={0}
+              align='center'
+              gutterBottom>
+              Through the Cave
+            </Typography>
 
-        <Typography
-          sx={{ fontSize: '1.2rem' }}
-          pt={3}
-          align='center'
-          gutterBottom>
-          Score:
-        </Typography>
-        <Divider />
-        <ScoreTable />
-      </StyledContainer>
+            <Typography
+              sx={{ fontSize: '1.2rem' }}
+              pt={3}
+              align='center'
+              gutterBottom>
+              Score:
+            </Typography>
+            <Divider />
+            <ScoreTable />
+          </StyledContainer>
 
-      <StyledContainer
-        sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
-        maxWidth='sm'>
-        <Box component='form' noValidate autoComplete='off'>
-          <TextField
-            id='outlined-basic'
-            label='Write your name'
-            variant='outlined'
-            color='secondary'
-            value={playerName}
-            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-              setPlayerName(event.target.value)
-            }}
-            fullWidth
-          />
-        </Box>
+          <StyledContainer
+            sx={{ backgroundColor: (theme) => theme.palette.primary.main }}
+            maxWidth='sm'>
+            <Box component='form' noValidate autoComplete='off'>
+              <TextField
+                id='outlined-basic'
+                label='Write your name'
+                variant='outlined'
+                color='secondary'
+                value={playerName}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                  setPlayerName(event.target.value)
+                }}
+                fullWidth
+              />
+            </Box>
 
-        <ComplexitySlider />
-      </StyledContainer>
+            <ComplexitySlider />
+          </StyledContainer>
 
-      <Button
-        variant='contained'
-        size='large'
-        sx={{ width: '100%' }}
-        onClick={() => startGame()}
-        disabled={playerName.length > 0 ? false : true}>
-        START GAME
-      </Button>
-    </StyledWelcomeBoard>
+          <Button
+            variant='contained'
+            size='large'
+            sx={{ width: '100%' }}
+            onClick={() => startGame()}
+            disabled={playerName.length > 0 ? false : true}>
+            START GAME
+          </Button>
+        </StyledWelcomeBoard>
+      ) : (
+        ''
+      )}
+    </>
   )
 }
 
