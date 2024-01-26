@@ -14,8 +14,6 @@ function GaugesBlock() {
       ? 50
       : -50
 
-  console.log(horizontalSpeed)
-
   return (
     <>
       {gameDataLoaded ? (
