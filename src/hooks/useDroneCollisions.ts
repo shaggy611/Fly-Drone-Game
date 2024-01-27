@@ -22,8 +22,12 @@ const useDroneCollision = () => {
       const droneSize = droneRef.getBoundingClientRect()
 
       const relativeDronePosTop =
-        Math.floor((droneSize!.bottom - caveSize!.top - 11) / caveBlockHeight) +
-        1
+        Math.floor(
+          (droneSize!.bottom - caveSize!.top - (caveBlockHeight - 1)) /
+            caveBlockHeight
+        ) + 1
+
+      console.log(relativeDronePosTop)
 
       if (caveAllBlocks.length > 0) {
         const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
