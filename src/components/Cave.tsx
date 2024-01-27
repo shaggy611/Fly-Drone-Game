@@ -104,5 +104,8 @@ const StyledCave = styled.div`
 `
 
 const CaveSVGWrapper = styled.div`
-  transition: all 0.1s ease-in;
+  transition: all 0.13s ease-in;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 `

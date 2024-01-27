@@ -6,12 +6,11 @@ import { Button } from '@mui/material'
 import Drone from './components/Drone'
 import styled from 'styled-components'
 import FailedGame from './components/FailedGame'
-// import { LinearProgress } from '@mui/material'
 import { resetAllStore } from './store'
 import GaugesBlock from './components/GaugesBlock'
 import WinGame from './components/WinGame'
-// import loadingImage from './assets/loading.png'
 import Loader from './components/Loader'
+import KeyboardTip from './components/KeyboardTip'
 
 function App() {
   const start = useBoundStore((state) => state.start)
@@ -32,13 +31,13 @@ function App() {
 
       {loading ? (
         <>
-          {/* <StyledLinearProgress color='success' />
-          <StyledImage src={loadingImage} /> */}
           <Loader />
         </>
       ) : (
         ''
       )}
+
+      <KeyboardTip />
 
       <WelcomeBoard />
 

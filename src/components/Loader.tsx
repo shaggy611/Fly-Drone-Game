@@ -18,9 +18,10 @@ function Loader() {
 export default Loader
 
 const spin = keyframes`
-  0%,100%{transform:translate(0)}
-  25%{transform:translate(160%)}
-  50%{transform:translate(160%, 160%)}
+  0%{transform: rotate(0deg)}
+  100%{transform:translate(0) rotate(180deg)}
+  25%{transform:translate(160%) rotate(180deg)}
+  50%{transform:translate(160%, 160%) rotate(90deg)}
   75%{transform:translate(0, 160%)}
   `
 
@@ -41,30 +42,30 @@ const StyledLoader = styled.div`
   & .load hr {
     border: 0;
     margin: 0;
-    width: 40%;
-    height: 40%;
+    width: 35%;
+    height: 35%;
     position: absolute;
-    border-radius: 50%;
-    animation: ${spin} 2s ease infinite;
+    border-radius: 30%;
+    animation: ${spin} 3s ease-in infinite;
   }
 
   & .load :first-child {
-    background: #19a68c;
+    background: #398ab9;
     animation-delay: -1.5s;
     box-shadow: #3d3d3d88 5px 5px 5px;
   }
   & .load :nth-child(2) {
-    background: #f63d3a;
+    background: #ebd671;
     animation-delay: -1s;
     box-shadow: #3d3d3d88 5px 5px 5px;
   }
   & .load :nth-child(3) {
-    background: #fda543;
+    background: #ea5455;
     animation-delay: -0.5s;
     box-shadow: #3d3d3d88 5px 5px 5px;
   }
   & .load :last-child {
-    background: #193b48;
+    background: #85c88a;
     box-shadow: #3d3d3d88 5px 5px 5px;
   }
 
