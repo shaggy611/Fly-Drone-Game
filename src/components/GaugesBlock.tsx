@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { useBoundStore } from '../store'
+import { Container } from '@mui/material'
 
 function GaugesBlock() {
   const horizontalSpeed = useBoundStore((state) => state.horizontalSpeed)
@@ -17,7 +18,8 @@ function GaugesBlock() {
   return (
     <>
       {gameDataLoaded ? (
-        <StyledWrapper>
+        <StyledWrapper
+          sx={{ backgroundColor: (theme) => theme.palette.primary.main }}>
           <span className='gauge-subtext'>Vertical Speed</span>
           <div className='gauge-wrapper'>
             <div className='gauge'>
@@ -59,14 +61,17 @@ const appearing = keyframes`
     100% { transform:translateX(0); opacity: 1; }
 `
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled(Container)`
   position: absolute;
   top: 12px;
   left: 10px;
-  max-width: 230px;
+  max-width: 280px !important;
   max-height: 150px;
-  width: 100%;
   animation: ${appearing} 0.5s ease-in;
+
+  width: 100%;
+  padding: 8px;
+  border-radius: 10px;
 
   & .gauge-wrapper {
     display: flex;
@@ -97,7 +102,7 @@ const StyledWrapper = styled.div`
   & .gauge-indicator {
     display: block;
     position: relative;
-    background-color: #F15412;
+    background-color: #f15412;
     width: 5.5%;
     height: 65%;
     border-radius: 100%;
@@ -110,6 +115,6 @@ const StyledWrapper = styled.div`
   }
 
   & .indication-text {
-    margin: 0;
+    margin: 0 0 0 7px;
   }
 `

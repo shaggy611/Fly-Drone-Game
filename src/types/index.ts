@@ -12,6 +12,7 @@ export interface globalGameStore {
   caveBlockHeight: number
   gameFailed: boolean
   gameSuccess: boolean
+  score: number
   setLoading: () => void
   setStart: () => void
   setGameFailed: () => void
@@ -19,6 +20,7 @@ export interface globalGameStore {
   setPlayerName: (payload: string) => void
   setGameComplexity: (payload: number) => void
   setGameDataLoaded: () => void
+  setScore: (payload: number) => void
 }
 
 export interface gameInitializeStore {

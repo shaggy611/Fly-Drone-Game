@@ -11,6 +11,7 @@ import GaugesBlock from './components/GaugesBlock'
 import WinGame from './components/WinGame'
 import Loader from './components/Loader'
 import KeyboardTip from './components/KeyboardTip'
+import Score from './components/Score'
 
 function App() {
   const start = useBoundStore((state) => state.start)
@@ -46,6 +47,8 @@ function App() {
       <WinGame />
 
       <GaugesBlock />
+
+      <Score />
 
       <StyledButton
         variant='contained'

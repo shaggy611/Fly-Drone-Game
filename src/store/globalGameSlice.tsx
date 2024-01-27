@@ -16,6 +16,7 @@ const initialGLobalGameState = {
   gameFailed: false,
   gameSuccess: false,
   gameDataLoaded: false,
+  score: 0,
 }
 
 const createGLobalGameSlice: StateCreator<
@@ -37,6 +38,7 @@ const createGLobalGameSlice: StateCreator<
     setPlayerName: (payload) => set(() => ({ playerName: payload })),
     setGameDataLoaded: () =>
       set((state) => ({ gameDataLoaded: !state.gameDataLoaded })),
+    setScore: (payload) => set(() => ({ score: payload })),
   }
 }
 
