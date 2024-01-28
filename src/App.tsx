@@ -76,20 +76,3 @@ const StyledButton = styled(Button)`
   bottom: 12px;
   right: 10px;
 `
-
-// const StyledLinearProgress = styled(LinearProgress)`
-//   position: absolute !important;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 7px !important;
-// `
-
-// const StyledImage = styled.img`
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   width: 100%;
-//   max-width: 300px;
-// `
