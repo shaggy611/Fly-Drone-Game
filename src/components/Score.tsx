@@ -1,10 +1,13 @@
 import { Container, Typography } from '@mui/material'
 import styled from 'styled-components'
 import { useBoundStore } from '../store'
+import useScore from '../hooks/useScore'
 
 function Score() {
   const score = useBoundStore((state) => state.score)
   const gameDataLoaded = useBoundStore((state) => state.gameDataLoaded)
+
+  useScore()
 
   return (
     <>

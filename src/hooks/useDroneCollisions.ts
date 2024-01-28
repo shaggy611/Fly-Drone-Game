@@ -14,6 +14,9 @@ const useDroneCollision = () => {
   const horizontalTraveledDistance = useBoundStore(
     (state) => state.horizontalTraveledDistance
   )
+  const setRelativeTopPosition = useBoundStore(
+    (state) => state.setRelativeTopPosition
+  )
 
   useEffect(() => {
     if (droneRef && caveRef) {
@@ -27,7 +30,7 @@ const useDroneCollision = () => {
             caveBlockHeight
         ) + 1
 
-      console.log(relativeDronePosTop)
+      setRelativeTopPosition(relativeDronePosTop)
 
       if (caveAllBlocks.length > 0) {
         const caveCurrentLeftBlock = caveAllBlocks[relativeDronePosTop]
