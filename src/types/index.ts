@@ -1,5 +1,3 @@
-// import { KeyboardEvent } from 'react'
-
 export interface KeyboardEvent {
   key: string
 }
@@ -49,6 +47,7 @@ export interface droneStore {
   droneRef: HTMLImageElement | null
   verticalTraveledDistance: number
   horizontalTraveledDistance: number
+  relativeTopPosition: number
   setHorizontalSpeed: (payload: number) => void
   setEdgesPoints: (payload: number[][]) => void
   setVerticalSpeedUp: () => void
@@ -57,6 +56,7 @@ export interface droneStore {
   setDroneRef: (payload: HTMLImageElement) => void
   setVerticalTraveledDistance: (payload: number) => void
   setHorizontalTraveledDistance: (payload: number) => void
+  setRelativeTopPosition: (payload: number) => void
 }
 
 export type changeDroneSpeed = () => void

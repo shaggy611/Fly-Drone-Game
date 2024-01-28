@@ -14,6 +14,7 @@ const initialDroneState = {
   droneRef: null,
   verticalTraveledDistance: 0,
   horizontalTraveledDistance: 0,
+  relativeTopPosition: 0,
 }
 
 const createDroneSlice: StateCreator<
@@ -48,6 +49,8 @@ const createDroneSlice: StateCreator<
       set(() => ({ verticalTraveledDistance: payload })),
     setHorizontalTraveledDistance: (payload) =>
       set(() => ({ horizontalTraveledDistance: payload })),
+    setRelativeTopPosition: (payload) =>
+      set(() => ({ relativeTopPosition: payload })),
   }
 }
 
