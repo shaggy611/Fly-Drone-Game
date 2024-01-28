@@ -9,6 +9,11 @@ function ComplexitySlider() {
   const gameComplexity = useBoundStore((state) => state.gameComplexity)
   const setGameComplexity = useBoundStore((state) => state.setGameComplexity)
 
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setGameComplexity(newValue as number)
+    return event
+  }
+
   return (
     <>
       <Typography
@@ -20,12 +25,11 @@ function ComplexitySlider() {
       </Typography>
 
       <StyledSlider
-        onChange={(event: Event, newValue: number | number[]) => {
-          setGameComplexity(newValue as number)
-        }}
+        onChange={handleChange}
         value={gameComplexity}
         aria-label='Complexity level'
         valueLabelDisplay='auto'
+        valueLabelFormat={Number}
         step={1}
         marks
         min={1}
