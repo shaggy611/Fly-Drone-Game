@@ -1,18 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { useBoundStore } from '../store'
 import styled from 'styled-components'
-import apiGetCaveCoords from '../utils/api/apiGetCaveCoords'
-import prepareCoordsForSVG from '../utils/prepareCoordsForSVG'
-import { apiInitGame } from '../utils/api/apiGameInitialize'
+// import apiGetCaveCoords from '../utils/api/apiGetCaveCoords'
+// import prepareCoordsForSVG from '../utils/prepareCoordsForSVG'
+// import { apiInitGame } from '../utils/api/apiGameInitialize'
 import CaveSVG from './CaveSVG'
+import useGameInit from '../hooks/useGameInit'
 
 function Cave() {
-  const cords = useBoundStore((state) => state.caveCoords)
-  const token = useBoundStore((state) => state.token)
+  // const cords = useBoundStore((state) => state.caveCoords)
+  // const token = useBoundStore((state) => state.token)
   const loading = useBoundStore((state) => state.loading)
-  const setLoading = useBoundStore((state) => state.setLoading)
+  // const setLoading = useBoundStore((state) => state.setLoading)
   const caveSvgPoints = useBoundStore((state) => state.caveSvgPoints)
-  const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
+  // const setCaveSvgPoints = useBoundStore((state) => state.setCaveSvgPoints)
   const verticalSpeed = useBoundStore((state) => state.verticalSpeed)
   const verticalTraveledDistance = useBoundStore(
     (state) => state.verticalTraveledDistance
@@ -22,7 +23,7 @@ function Cave() {
   )
   const caveRef = useRef<HTMLDivElement | null>(null)
   const speedIntervalRef = useRef<number | null>(null)
-  const setGameDataLoaded = useBoundStore((state) => state.setGameDataLoaded)
+  // const setGameDataLoaded = useBoundStore((state) => state.setGameDataLoaded)
 
   useEffect(() => {
     function droneVerticalSpeedChange() {
@@ -44,32 +45,34 @@ function Cave() {
     }
   }, [verticalTraveledDistance])
 
-  useEffect(() => {
-    async function initGame() {
-      await apiInitGame()
-    }
-    initGame()
-    setLoading()
-  }, [setLoading])
+  useGameInit()
 
-  useEffect(() => {
-    async function getCaveCoords() {
-      await apiGetCaveCoords()
-    }
+  // useEffect(() => {
+  //   async function initGame() {
+  //     await apiInitGame()
+  //   }
+  //   initGame()
+  //   setLoading()
+  // }, [setLoading])
 
-    if (token.length > 0) {
-      getCaveCoords()
-    }
-  }, [token])
+  // useEffect(() => {
+  //   async function getCaveCoords() {
+  //     await apiGetCaveCoords()
+  //   }
 
-  useEffect(() => {
-    if (cords.length > 0) {
-      const stringSVG = prepareCoordsForSVG(cords)
-      setCaveSvgPoints(stringSVG)
-      setLoading()
-      setGameDataLoaded()
-    }
-  }, [cords, setCaveSvgPoints, setLoading])
+  //   if (token.length > 0) {
+  //     getCaveCoords()
+  //   }
+  // }, [token])
+
+  // useEffect(() => {
+  //   if (cords.length > 0) {
+  //     const stringSVG = prepareCoordsForSVG(cords)
+  //     setCaveSvgPoints(stringSVG)
+  //     setLoading()
+  //     setGameDataLoaded()
+  //   }
+  // }, [cords, setCaveSvgPoints, setLoading])
 
   return (
     <>
