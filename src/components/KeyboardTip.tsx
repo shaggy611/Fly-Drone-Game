@@ -1,13 +1,21 @@
 import styled, { keyframes } from 'styled-components'
 import { Typography } from '@mui/material'
+import { useBoundStore } from '../store'
 
 function KeyboardTip() {
+  const gameDataLoaded = useBoundStore((state) => state.gameDataLoaded)
   return (
-    <StyledKeyboardTip>
-      <Typography sx={{ fontSize: '1.05rem' }} align='center' gutterBottom>
-        Use keyboard arrow keys ← → ↑ ↓ for Drone move
-      </Typography>
-    </StyledKeyboardTip>
+    <>
+      {gameDataLoaded ? (
+        <StyledKeyboardTip>
+          <Typography sx={{ fontSize: '1.05rem' }} align='center' gutterBottom>
+            Use keyboard arrow keys ← → ↑ ↓ for Drone move
+          </Typography>
+        </StyledKeyboardTip>
+      ) : (
+        ''
+      )}
+    </>
   )
 }
 
