@@ -6,7 +6,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 import { useEffect } from 'react'
 
 export default function WinGame() {
-  const [value, updateLocalStorageValue] = useLocalStorage()
+  const [, updateLocalStorageValue] = useLocalStorage()
   const gameSuccess = useBoundStore((state) => state.gameSuccess)
   const playerName = useBoundStore((state) => state.playerName)
   const gameComplexity = useBoundStore((state) => state.gameComplexity)

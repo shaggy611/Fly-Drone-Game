@@ -6,7 +6,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 import { useEffect } from 'react'
 
 export default function FailedGame() {
-  const [value, updateLocalStorageValue] = useLocalStorage()
+  const [, updateLocalStorageValue] = useLocalStorage()
   const gameFailed = useBoundStore((state) => state.gameFailed)
   const playerName = useBoundStore((state) => state.playerName)
   const gameComplexity = useBoundStore((state) => state.gameComplexity)
