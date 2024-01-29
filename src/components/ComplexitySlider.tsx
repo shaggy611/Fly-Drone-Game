@@ -33,7 +33,7 @@ function ComplexitySlider() {
         step={1}
         marks
         min={1}
-        max={10}
+        max={5}
         theme={theme}
       />
     </>
