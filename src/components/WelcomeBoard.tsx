@@ -77,7 +77,11 @@ function WelcomeBoard() {
             sx={{ width: '100%' }}
             onClick={() => startGame()}
             disabled={
-              playerName.length > 2 && pattern.test(playerName) ? false : true
+              playerName.length > 2 &&
+              playerName.length <= 10 &&
+              pattern.test(playerName)
+                ? false
+                : true
             }>
             START GAME
           </Button>
