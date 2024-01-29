@@ -2,9 +2,22 @@ import { Button } from '@mui/material'
 import styled, { keyframes } from 'styled-components'
 import { resetAllStore, useBoundStore } from '../store'
 import gameOverImage from '../assets/gameover.png'
+import useLocalStorage from '../hooks/useLocalStorage'
+import { useEffect } from 'react'
 
 export default function FailedGame() {
+  const [value, updateLocalStorageValue] = useLocalStorage()
   const gameFailed = useBoundStore((state) => state.gameFailed)
+  const playerName = useBoundStore((state) => state.playerName)
+  const gameComplexity = useBoundStore((state) => state.gameComplexity)
+  const score = useBoundStore((state) => state.score)
+
+  useEffect(() => {
+    if (gameFailed) {
+      updateLocalStorageValue(playerName, { playerName, gameComplexity, score })
+      console.log('failed component')
+    }
+  }, [gameFailed])
 
   return (
     <>

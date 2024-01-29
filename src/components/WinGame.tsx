@@ -2,9 +2,22 @@ import { Button } from '@mui/material'
 import styled, { keyframes } from 'styled-components'
 import { resetAllStore, useBoundStore } from '../store'
 import winGameImage from '../assets/win.png'
+import useLocalStorage from '../hooks/useLocalStorage'
+import { useEffect } from 'react'
 
 export default function WinGame() {
+  const [value, updateLocalStorageValue] = useLocalStorage()
   const gameSuccess = useBoundStore((state) => state.gameSuccess)
+  const playerName = useBoundStore((state) => state.playerName)
+  const gameComplexity = useBoundStore((state) => state.gameComplexity)
+  const score = useBoundStore((state) => state.score)
+
+  useEffect(() => {
+    if (gameSuccess) {
+      updateLocalStorageValue(playerName, { playerName, gameComplexity, score })
+      console.log('win component')
+    }
+  }, [gameSuccess])
 
   return (
     <>
