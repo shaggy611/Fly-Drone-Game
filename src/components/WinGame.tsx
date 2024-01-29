@@ -15,7 +15,6 @@ export default function WinGame() {
   useEffect(() => {
     if (gameSuccess) {
       updateLocalStorageValue(playerName, { playerName, gameComplexity, score })
-      console.log('win component')
     }
   }, [gameSuccess])
 

@@ -23,7 +23,6 @@ const useLocalStorage = () => {
     setValue(newStorageValue)
 
     localStorage.setItem(storageKey, JSON.stringify(storageValue))
-    console.log('storage hook')
   }
 
   return [value, updateLocalStorageValue] as const

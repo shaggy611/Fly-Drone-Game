@@ -15,7 +15,6 @@ export default function FailedGame() {
   useEffect(() => {
     if (gameFailed) {
       updateLocalStorageValue(playerName, { playerName, gameComplexity, score })
-      console.log('failed component')
     }
   }, [gameFailed])
 
