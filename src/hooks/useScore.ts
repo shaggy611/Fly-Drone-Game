@@ -14,6 +14,9 @@ const useScore = () => {
   const setScore = useBoundStore((state) => state.setScore)
   const gameComplexity = useBoundStore((state) => state.gameComplexity)
   const verticalSpeed = useBoundStore((state) => state.verticalSpeed)
+  const gameFailed = useBoundStore((state) => state.gameFailed)
+  const gameSuccess = useBoundStore((state) => state.gameSuccess)
+
   const [prevCaveBlock, setPrevCaveBlock] = useState(2)
 
   useEffect(() => {
@@ -21,7 +24,16 @@ const useScore = () => {
       setPrevCaveBlock(relativeTopPosition)
       setScore(1 * (gameComplexity + verticalSpeed))
     }
-  }, [horizontalTraveledDistance, verticalTraveledDistance])
+
+    if (gameFailed || gameSuccess) {
+      setPrevCaveBlock(2)
+    }
+  }, [
+    horizontalTraveledDistance,
+    verticalTraveledDistance,
+    gameFailed,
+    gameSuccess,
+  ])
 }
 
 export default useScore
