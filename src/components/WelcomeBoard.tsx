@@ -16,6 +16,8 @@ function WelcomeBoard() {
   const gameFailed = useBoundStore((state) => state.gameFailed)
   const gameSuccess = useBoundStore((state) => state.gameSuccess)
 
+  const pattern = /^[a-zA-Z0-9]+$/
+
   function startGame() {
     setStart()
   }
@@ -74,7 +76,9 @@ function WelcomeBoard() {
             size='large'
             sx={{ width: '100%' }}
             onClick={() => startGame()}
-            disabled={playerName.length > 0 ? false : true}>
+            disabled={
+              playerName.length > 2 && pattern.test(playerName) ? false : true
+            }>
             START GAME
           </Button>
         </StyledWelcomeBoard>
